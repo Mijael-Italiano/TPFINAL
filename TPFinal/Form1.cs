@@ -34,11 +34,6 @@ namespace TPFinal
             grillaInscripto.DataSource = inscriptoBusiness.GetLista();
         }
 
-     /*   private void LlenarGrillaDetalleClase()
-        {
-            grillaClaseDetalle.DataSource = null;
-            grillaClaseDetalle.DataSource = detalleClaseBusiness.GetLista();
-        }*/
 
         private void btnDetalleClase_Click(object sender, EventArgs e)
         {
