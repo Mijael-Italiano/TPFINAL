@@ -26,14 +26,13 @@ namespace Data
                         List<Profesor> lista = new List<Profesor>();
                         while (reader.Read())
                         {
-                            Profesor profe = new Profesor
-                            {
-                                ID_Profesor = Convert.ToInt32(reader["ID_Profesor"]),
-                                Nombre = reader["Nombre"].ToString(),
-                                Apellido = reader["Apellido"].ToString(),
-                                Sueldo = Convert.ToInt32(reader["Sueldo"]),
-                                Disciplina = reader["Disciplina"].ToString()
-                            };
+                            Profesor profe = new Profesor();
+                            profe.ID_Profesor = Convert.ToInt32(reader["ID_Profesor"]);
+                            profe.Nombre = reader["Nombre"].ToString();
+                            profe.Apellido = reader["Apellido"].ToString();
+                            profe.Sueldo = Convert.ToInt32(reader["Sueldo"]);
+                            profe.ID_Clase = Convert.ToInt32(reader["ID_Clase"]);
+                            profe.DNI = reader["DNI"] != DBNull.Value ? Convert.ToInt32(reader["DNI"]) : 0;
                             lista.Add(profe);
                         }
                         return lista;
