@@ -30,11 +30,10 @@
         {
             grillaInscripto = new DataGridView();
             grillaClase = new DataGridView();
-            grillaClaseDetalle = new DataGridView();
             grillaProfesor = new DataGridView();
+            btnDetalleClase = new Button();
             ((System.ComponentModel.ISupportInitialize)grillaInscripto).BeginInit();
             ((System.ComponentModel.ISupportInitialize)grillaClase).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)grillaClaseDetalle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)grillaProfesor).BeginInit();
             SuspendLayout();
             // 
@@ -49,18 +48,10 @@
             // grillaClase
             // 
             grillaClase.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grillaClase.Location = new Point(56, 484);
+            grillaClase.Location = new Point(661, 21);
             grillaClase.Name = "grillaClase";
-            grillaClase.Size = new Size(509, 122);
+            grillaClase.Size = new Size(509, 382);
             grillaClase.TabIndex = 1;
-            // 
-            // grillaClaseDetalle
-            // 
-            grillaClaseDetalle.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grillaClaseDetalle.Location = new Point(631, 21);
-            grillaClaseDetalle.Name = "grillaClaseDetalle";
-            grillaClaseDetalle.Size = new Size(590, 370);
-            grillaClaseDetalle.TabIndex = 2;
             // 
             // grillaProfesor
             // 
@@ -70,20 +61,29 @@
             grillaProfesor.Size = new Size(537, 115);
             grillaProfesor.TabIndex = 3;
             // 
+            // btnDetalleClase
+            // 
+            btnDetalleClase.Location = new Point(661, 416);
+            btnDetalleClase.Name = "btnDetalleClase";
+            btnDetalleClase.Size = new Size(122, 38);
+            btnDetalleClase.TabIndex = 4;
+            btnDetalleClase.Text = "Ver detalle clase";
+            btnDetalleClase.UseVisualStyleBackColor = true;
+            btnDetalleClase.Click += btnDetalleClase_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1233, 618);
+            Controls.Add(btnDetalleClase);
             Controls.Add(grillaProfesor);
-            Controls.Add(grillaClaseDetalle);
             Controls.Add(grillaClase);
             Controls.Add(grillaInscripto);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)grillaInscripto).EndInit();
             ((System.ComponentModel.ISupportInitialize)grillaClase).EndInit();
-            ((System.ComponentModel.ISupportInitialize)grillaClaseDetalle).EndInit();
             ((System.ComponentModel.ISupportInitialize)grillaProfesor).EndInit();
             ResumeLayout(false);
         }
@@ -92,7 +92,7 @@
 
         private DataGridView grillaInscripto;
         private DataGridView grillaClase;
-        private DataGridView grillaClaseDetalle;
         private DataGridView grillaProfesor;
+        private Button btnDetalleClase;
     }
 }
