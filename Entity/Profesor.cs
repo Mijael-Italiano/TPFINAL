@@ -13,5 +13,6 @@ namespace Entity
         public string Apellido { get; set; }
         public int Sueldo { get; set; }
         public string Disciplina { get; set; }
+        public int DNI { get; set; }
     }
 }
