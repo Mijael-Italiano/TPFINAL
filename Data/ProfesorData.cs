@@ -44,5 +44,43 @@ namespace Data
                 throw;
             }
         }
+
+
+        public Profesor GetProfesorById(int id)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Profesores WHERE ID_Profesor = @Id";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Profesor profe = new Profesor();
+                            profe.ID_Profesor = Convert.ToInt32(reader["ID_Profesor"]);
+                            profe.Nombre = reader["Nombre"].ToString();
+                            profe.Apellido = reader["Apellido"].ToString();
+                            profe.Sueldo = Convert.ToInt32(reader["Sueldo"]);
+                            profe.Disciplina = reader["Disciplina"].ToString();
+                            profe.DNI = Convert.ToInt32(reader["DNI"]);
+                            return profe;
+                        }
+                        else
+                        {
+                            return null; // No se encontró el profesor
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

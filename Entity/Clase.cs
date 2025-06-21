@@ -14,5 +14,6 @@ namespace Entity
         public string Nombre_Clase { get; set; }
         public int Cantidad_Inscriptos { get; set; }
         public string CuotaMensual { get; set; }
+        public int Maximo_Alumnos { get; set; }
     }
 }

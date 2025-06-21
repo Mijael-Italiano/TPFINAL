@@ -12,7 +12,9 @@ namespace Entity
         public string Dia { get; set; }
         public TimeSpan Horario_Inicio { get; set; }
         public TimeSpan Horario_Fin { get; set; }
-        public int? ID_Profesor { get; set; }
-        public int? ID_Clase { get; set; } // Nullable porque permite nulos
+
+        public Profesor? profesor { get; set; }
+        public Clase? clase { get; set; }
+
     }
 }

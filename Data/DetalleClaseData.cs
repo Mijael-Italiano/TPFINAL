@@ -11,6 +11,8 @@ namespace Data
 {
     public class DetalleClaseData
     {
+        ClaseData claseData = new ClaseData();
+        ProfesorData profesorData = new ProfesorData();
         public List<DetalleClase> ObtenerDetalleClases()
         {
             try
@@ -20,24 +22,24 @@ namespace Data
                 {
                     connection.Open();
                     string query = "SELECT * FROM Detalle_Clase";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        List<DetalleClase> lista = new List<DetalleClase>();
-                        while (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            DetalleClase dc = new DetalleClase
+                            List<DetalleClase> lista = new List<DetalleClase>();
+                            while (reader.Read())
                             {
-                                Id_Detalle_Clases = Convert.ToInt32(reader["Id_Detalle_Clases"]),
-                                Dia = reader["Dia"].ToString(),
-                                Horario_Inicio = (TimeSpan)reader["Horario_Inicio"],
-                                Horario_Fin = (TimeSpan)reader["Horario_Fin"],
-                                ID_Profesor = Convert.ToInt32(reader["ID_Profesor"]),
-                                ID_Clase = reader["ID_Clase"] == DBNull.Value ? null : (int?)Convert.ToInt32(reader["ID_Clase"])
-                            };
-                            lista.Add(dc);
+                                DetalleClase dc = new DetalleClase();
+                                dc.Id_Detalle_Clases = Convert.ToInt32(reader["Id_Detalle_Clases"]);
+                                dc.Dia = reader["Dia"].ToString();
+                                dc.Horario_Inicio = (TimeSpan)reader["Horario_Inicio"];
+                                dc.Horario_Fin = (TimeSpan)reader["Horario_Fin"];
+                                dc.profesor = profesorData.GetProfesorById(Convert.ToInt32(reader["ID_Profesor"]));
+                                dc.clase = claseData.GetClaseById(Convert.ToInt32(reader["ID_Clase"]));
+                                lista.Add(dc);
+                            }
+                            return lista;
                         }
-                        return lista;
                     }
                 }
             }

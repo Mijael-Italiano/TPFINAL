@@ -11,32 +11,33 @@ namespace Data
 {
     public class InscriptoData
     {
+        ClaseData claseData = new ClaseData();
         public List<Inscripto> ObtenerInscriptos()
         {
             try
             {
-                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString);
-                using (connection)
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
                 {
-                    connection.Open();
-                    string query = "SELECT * FROM Inscriptos";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (connection)
                     {
-                        List<Inscripto> lista = new List<Inscripto>();
-                        while (reader.Read())
+                        connection.Open();
+                        string query = "SELECT * FROM Inscriptos";
+                        SqlCommand command = new SqlCommand(query, connection);
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            Inscripto i = new Inscripto
+                            List<Inscripto> lista = new List<Inscripto>();
+                            while (reader.Read())
                             {
-                                ID_Inscripto = Convert.ToInt32(reader["ID_Inscripto"]),
-                                Nombre = reader["Nombre"].ToString(),
-                                Apellido = reader["Apellido"].ToString(),
-                                DNI = Convert.ToInt32(reader["DNI"]),
-                                ID_Clase = reader["ID_Clase"] == DBNull.Value ? null : (int?)Convert.ToInt32(reader["ID_Clase"])
-                            };
-                            lista.Add(i);
+                                Inscripto i = new Inscripto();
+                                i.ID_Inscripto = Convert.ToInt32(reader["ID_Inscripto"]);
+                                i.clase = claseData.GetClaseById(Convert.ToInt32(reader["ID_Inscripto"]));
+                                i.Nombre = reader["Nombre"].ToString();
+                                i.Apellido = reader["Apellido"].ToString();
+                                i.DNI = Convert.ToInt32(reader["DNI"]);
+                                lista.Add(i);
+                            }
+                            return lista;
                         }
-                        return lista;
                     }
                 }
             }
@@ -45,5 +46,30 @@ namespace Data
                 throw;
             }
         }
+
+        public void AddInscripto(Inscripto inscripto)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "INSERT INTO INSCRIPTOS (NOMBRE, APELLIDO, DNI) VALUES(@Nombre, @Apellido, @DNI)";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Nombre", inscripto.Nombre);
+                        command.Parameters.AddWithValue("@Apellido", inscripto.Apellido);
+                        command.Parameters.AddWithValue("@DNI", inscripto.DNI);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }

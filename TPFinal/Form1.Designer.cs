@@ -32,6 +32,7 @@
             grillaClase = new DataGridView();
             grillaProfesor = new DataGridView();
             btnDetalleClase = new Button();
+            btnAgregarInscripto = new Button();
             ((System.ComponentModel.ISupportInitialize)grillaInscripto).BeginInit();
             ((System.ComponentModel.ISupportInitialize)grillaClase).BeginInit();
             ((System.ComponentModel.ISupportInitialize)grillaProfesor).BeginInit();
@@ -42,7 +43,7 @@
             grillaInscripto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             grillaInscripto.Location = new Point(47, 21);
             grillaInscripto.Name = "grillaInscripto";
-            grillaInscripto.Size = new Size(548, 382);
+            grillaInscripto.Size = new Size(569, 382);
             grillaInscripto.TabIndex = 0;
             // 
             // grillaClase
@@ -56,9 +57,9 @@
             // grillaProfesor
             // 
             grillaProfesor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grillaProfesor.Location = new Point(684, 484);
+            grillaProfesor.Location = new Point(661, 481);
             grillaProfesor.Name = "grillaProfesor";
-            grillaProfesor.Size = new Size(537, 115);
+            grillaProfesor.Size = new Size(509, 115);
             grillaProfesor.TabIndex = 3;
             // 
             // btnDetalleClase
@@ -71,11 +72,22 @@
             btnDetalleClase.UseVisualStyleBackColor = true;
             btnDetalleClase.Click += btnDetalleClase_Click;
             // 
+            // btnAgregarInscripto
+            // 
+            btnAgregarInscripto.Location = new Point(47, 421);
+            btnAgregarInscripto.Name = "btnAgregarInscripto";
+            btnAgregarInscripto.Size = new Size(121, 28);
+            btnAgregarInscripto.TabIndex = 5;
+            btnAgregarInscripto.Text = "Agregar Inscripto";
+            btnAgregarInscripto.UseVisualStyleBackColor = true;
+            btnAgregarInscripto.Click += btnAgregarInscripto_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1233, 618);
+            Controls.Add(btnAgregarInscripto);
             Controls.Add(btnDetalleClase);
             Controls.Add(grillaProfesor);
             Controls.Add(grillaClase);
@@ -94,5 +106,6 @@
         private DataGridView grillaClase;
         private DataGridView grillaProfesor;
         private Button btnDetalleClase;
+        private Button btnAgregarInscripto;
     }
 }

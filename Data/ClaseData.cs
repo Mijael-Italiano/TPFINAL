@@ -44,5 +44,42 @@ namespace Data
                 throw;
             }
         }
+
+
+        public Clase GetClaseById(int id)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Clases WHERE Id_Clase = @Id";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Id", id);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Clase clase = new Clase
+                            {
+                                Id_Clase = Convert.ToInt32(reader["Id_Clase"]),
+                                Nombre_Clase = reader["Nombre_Clase"].ToString(),
+                                Cantidad_Inscriptos = Convert.ToInt32(reader["Cantidad_Inscriptos"]),
+                                CuotaMensual = reader["CuotaMensual"].ToString()
+                            };
+                            return clase;
+                        }
+                        else
+                        {
+                            return null; 
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

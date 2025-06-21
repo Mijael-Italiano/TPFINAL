@@ -34,19 +34,28 @@ namespace TPFinal
             grillaInscripto.DataSource = inscriptoBusiness.GetLista();
         }
 
-     /*   private void LlenarGrillaDetalleClase()
-        {
-            grillaClaseDetalle.DataSource = null;
-            grillaClaseDetalle.DataSource = detalleClaseBusiness.GetLista();
-        }*/
+        /*   private void LlenarGrillaDetalleClase()
+           {
+               grillaClaseDetalle.DataSource = null;
+               grillaClaseDetalle.DataSource = detalleClaseBusiness.GetLista();
+           }*/
 
         private void btnDetalleClase_Click(object sender, EventArgs e)
         {
             using (FormDetalleClase detalle = new FormDetalleClase())
             {
-                detalle.ShowDialog(); 
+                detalle.ShowDialog();
             }
 
+        }
+
+        private void btnAgregarInscripto_Click(object sender, EventArgs e)
+        {
+            FormAgregarInscripto formAgregarInscripto = new FormAgregarInscripto();
+            if (formAgregarInscripto.ShowDialog() == DialogResult.OK)
+            {
+                LlenarGrillaInscripto();
+            }
         }
     }
 }
