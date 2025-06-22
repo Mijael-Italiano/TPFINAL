@@ -30,13 +30,57 @@ namespace Data
                             {
                                 Inscripto i = new Inscripto();
                                 i.ID_Inscripto = Convert.ToInt32(reader["ID_Inscripto"]);
-                                i.clase = claseData.GetClaseById(Convert.ToInt32(reader["ID_Inscripto"]));
+                                i.clase = reader["ID_Clase"] == DBNull.Value
+                                    ? null
+                                    : claseData.GetClaseById(Convert.ToInt32(reader["ID_Clase"]));
                                 i.Nombre = reader["Nombre"].ToString();
                                 i.Apellido = reader["Apellido"].ToString();
                                 i.DNI = Convert.ToInt32(reader["DNI"]);
                                 lista.Add(i);
                             }
                             return lista;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        public Inscripto GetInscriptoById(int id)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Inscriptos WHERE ID_Inscripto = @Id";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Id", id);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                Inscripto inscripto = new Inscripto
+                                {
+                                    ID_Inscripto = Convert.ToInt32(reader["ID_Inscripto"]),
+                                    Nombre = reader["Nombre"].ToString(),
+                                    Apellido = reader["Apellido"].ToString(),
+                                    DNI = Convert.ToInt32(reader["DNI"]),
+                                    clase = reader["ID_Clase"] == DBNull.Value
+                                        ? null
+                                        : claseData.GetClaseById(Convert.ToInt32(reader["ID_Clase"]))
+                                };
+                                return inscripto;
+                            }
+                            else
+                            {
+                                return null;
+                            }
                         }
                     }
                 }
@@ -68,6 +112,22 @@ namespace Data
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        public void AsociarClase(int idInscripto, int idClase)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+            {
+                connection.Open();
+                string query = "UPDATE Inscriptos SET ID_Clase = @IdClase WHERE ID_Inscripto = @IdInscripto";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdClase", idClase);
+                    command.Parameters.AddWithValue("@IdInscripto", idInscripto);
+                    command.ExecuteNonQuery();
+                }
             }
         }
 

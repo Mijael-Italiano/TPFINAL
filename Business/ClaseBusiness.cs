@@ -22,5 +22,15 @@ namespace Business
                 throw new Exception("Error al obtener clases", ex);
             }
         }
+        public void DisminuirCantidadInscriptos(int idClase)
+        {
+            claseData.DecrementarCantidadInscriptos(idClase);
+        }
+
+
+        public void AumentarCantidadInscriptos(int idClase)
+        {
+            claseData.IncrementarCantidadInscriptos(idClase);
+        }
     }
 }

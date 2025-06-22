@@ -20,22 +20,24 @@ namespace Data
                 {
                     connection.Open();
                     string query = "SELECT * FROM Clases";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        List<Clase> lista = new List<Clase>();
-                        while (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            Clase clase = new Clase
+                            List<Clase> lista = new List<Clase>();
+                            while (reader.Read())
                             {
-                                Id_Clase = Convert.ToInt32(reader["Id_Clase"]),
-                                Nombre_Clase = reader["Nombre_Clase"].ToString(),
-                                Cantidad_Inscriptos = Convert.ToInt32(reader["Cantidad_Inscriptos"]),
-                                CuotaMensual = reader["CuotaMensual"].ToString()
-                            };
-                            lista.Add(clase);
+                                Clase clase = new Clase
+                                {
+                                    Id_Clase = Convert.ToInt32(reader["Id_Clase"]),
+                                    Nombre_Clase = reader["Nombre_Clase"].ToString(),
+                                    Cantidad_Inscriptos = Convert.ToInt32(reader["Cantidad_Inscriptos"]),
+                                    CuotaMensual = reader["CuotaMensual"].ToString()
+                                };
+                                lista.Add(clase);
+                            }
+                            return lista;
                         }
-                        return lista;
                     }
                 }
             }
@@ -54,24 +56,26 @@ namespace Data
                 {
                     connection.Open();
                     string query = "SELECT * FROM Clases WHERE Id_Clase = @Id";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@Id", id);
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        if (reader.Read())
+                        command.Parameters.AddWithValue("@Id", id);
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            Clase clase = new Clase
+                            if (reader.Read())
                             {
-                                Id_Clase = Convert.ToInt32(reader["Id_Clase"]),
-                                Nombre_Clase = reader["Nombre_Clase"].ToString(),
-                                Cantidad_Inscriptos = Convert.ToInt32(reader["Cantidad_Inscriptos"]),
-                                CuotaMensual = reader["CuotaMensual"].ToString()
-                            };
-                            return clase;
-                        }
-                        else
-                        {
-                            return null; 
+                                Clase clase = new Clase
+                                {
+                                    Id_Clase = Convert.ToInt32(reader["Id_Clase"]),
+                                    Nombre_Clase = reader["Nombre_Clase"].ToString(),
+                                    Cantidad_Inscriptos = Convert.ToInt32(reader["Cantidad_Inscriptos"]),
+                                    CuotaMensual = reader["CuotaMensual"].ToString()
+                                };
+                                return clase;
+                            }
+                            else
+                            {
+                                return null;
+                            }
                         }
                     }
                 }
@@ -79,6 +83,37 @@ namespace Data
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+
+        public void IncrementarCantidadInscriptos(int idClase)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+            {
+                connection.Open();
+                string query = "UPDATE Clases SET Cantidad_Inscriptos = Cantidad_Inscriptos + 1 WHERE Id_Clase = @IdClase";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdClase", idClase);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DecrementarCantidadInscriptos(int idClase)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+            {
+                connection.Open();
+                string query = "UPDATE Clases SET Cantidad_Inscriptos = Cantidad_Inscriptos - 1 WHERE Id_Clase = @IdClase";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdClase", idClase);
+                    command.ExecuteNonQuery();
+                }
             }
         }
     }

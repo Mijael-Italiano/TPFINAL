@@ -15,27 +15,29 @@ namespace Data
         {
             try
             {
-                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString);
-                using (connection)
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
                 {
-                    connection.Open();
-                    string query = "SELECT * FROM Profesores";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (connection)
                     {
-                        List<Profesor> lista = new List<Profesor>();
-                        while (reader.Read())
+                        connection.Open();
+                        string query = "SELECT * FROM Profesores";
+                        SqlCommand command = new SqlCommand(query, connection);
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            Profesor profe = new Profesor();
-                            profe.ID_Profesor = Convert.ToInt32(reader["ID_Profesor"]);
-                            profe.Nombre = reader["Nombre"].ToString();
-                            profe.Apellido = reader["Apellido"].ToString();
-                            profe.Sueldo = Convert.ToInt32(reader["Sueldo"]);
-                            profe.Disciplina = reader["Disciplina"].ToString();
-                            profe.DNI = Convert.ToInt32(reader["DNI"]);
-                            lista.Add(profe);
+                            List<Profesor> lista = new List<Profesor>();
+                            while (reader.Read())
+                            {
+                                Profesor profe = new Profesor();
+                                profe.ID_Profesor = Convert.ToInt32(reader["ID_Profesor"]);
+                                profe.Nombre = reader["Nombre"].ToString();
+                                profe.Apellido = reader["Apellido"].ToString();
+                                profe.Sueldo = Convert.ToInt32(reader["Sueldo"]);
+                                profe.Disciplina = reader["Disciplina"].ToString();
+                                profe.DNI = Convert.ToInt32(reader["DNI"]);
+                                lista.Add(profe);
+                            }
+                            return lista;
                         }
-                        return lista;
                     }
                 }
             }
@@ -54,25 +56,27 @@ namespace Data
                 {
                     connection.Open();
                     string query = "SELECT * FROM Profesores WHERE ID_Profesor = @Id";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@Id", id);
-
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        if (reader.Read())
+                        command.Parameters.AddWithValue("@Id", id);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            Profesor profe = new Profesor();
-                            profe.ID_Profesor = Convert.ToInt32(reader["ID_Profesor"]);
-                            profe.Nombre = reader["Nombre"].ToString();
-                            profe.Apellido = reader["Apellido"].ToString();
-                            profe.Sueldo = Convert.ToInt32(reader["Sueldo"]);
-                            profe.Disciplina = reader["Disciplina"].ToString();
-                            profe.DNI = Convert.ToInt32(reader["DNI"]);
-                            return profe;
-                        }
-                        else
-                        {
-                            return null; // No se encontró el profesor
+                            if (reader.Read())
+                            {
+                                Profesor profe = new Profesor();
+                                profe.ID_Profesor = Convert.ToInt32(reader["ID_Profesor"]);
+                                profe.Nombre = reader["Nombre"].ToString();
+                                profe.Apellido = reader["Apellido"].ToString();
+                                profe.Sueldo = Convert.ToInt32(reader["Sueldo"]);
+                                profe.Disciplina = reader["Disciplina"].ToString();
+                                profe.DNI = Convert.ToInt32(reader["DNI"]);
+                                return profe;
+                            }
+                            else
+                            {
+                                return null; // No se encontró el profesor
+                            }
                         }
                     }
                 }
