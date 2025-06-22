@@ -54,15 +54,14 @@ namespace Business
         {
             try
             {
-                Inscripto inscriptoActual = inscriptoData.GetInscriptoById(idInscripto);
-
-                if (inscriptoActual.clase != null && inscriptoActual.clase.Id_Clase != idClase)
-                {
-                    claseBusiness.DisminuirCantidadInscriptos(inscriptoActual.clase.Id_Clase);
-                }
-
                 using (TransactionScope scope = new TransactionScope())
                 {
+                    Inscripto inscriptoActual = inscriptoData.GetInscriptoById(idInscripto);
+
+                    if (inscriptoActual.clase != null && inscriptoActual.clase.Id_Clase != idClase)
+                    {
+                        claseBusiness.DisminuirCantidadInscriptos(inscriptoActual.clase.Id_Clase);
+                    }
                     inscriptoData.AsociarClase(idInscripto, idClase);
                     claseBusiness.AumentarCantidadInscriptos(idClase);
                     scope.Complete();
