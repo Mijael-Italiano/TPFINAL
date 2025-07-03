@@ -92,5 +92,14 @@ namespace TPFinal
                 LlenarGrillaClase();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormAgregarClase formAgregarClase = new FormAgregarClase();
+            if (formAgregarClase.ShowDialog() == DialogResult.OK)
+            {
+                LlenarGrillaInscripto();
+            }
+        }
     }
 }

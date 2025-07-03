@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Entity;
 using System.Data.SqlClient;
 using System.Configuration;
+using Mapper;
 
 namespace Data
 {

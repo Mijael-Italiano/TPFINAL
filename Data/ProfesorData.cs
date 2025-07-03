@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 using Entity;
 using System.Data.SqlClient;
 using System.Configuration;
+using Mapper;
 
 namespace Data
 {
     public class ProfesorData
     {
+        DisciplinaData disciplinaData = new DisciplinaData();
         public List<Profesor> ObtenerProfesores()
         {
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
@@ -32,7 +35,8 @@ namespace Data
                                 profe.Nombre = reader["Nombre"].ToString();
                                 profe.Apellido = reader["Apellido"].ToString();
                                 profe.Sueldo = Convert.ToInt32(reader["Sueldo"]);
-                                profe.Disciplina = reader["Disciplina"].ToString();
+ 
+                                profe.Disciplina = disciplinaData.GetDisciplinaById(Convert.ToInt32(reader["Id_Disciplina"]));
                                 profe.DNI = Convert.ToInt32(reader["DNI"]);
                                 lista.Add(profe);
                             }
@@ -69,13 +73,13 @@ namespace Data
                                 profe.Nombre = reader["Nombre"].ToString();
                                 profe.Apellido = reader["Apellido"].ToString();
                                 profe.Sueldo = Convert.ToInt32(reader["Sueldo"]);
-                                profe.Disciplina = reader["Disciplina"].ToString();
+                                profe.Disciplina = disciplinaData.GetDisciplinaById(Convert.ToInt32(reader["Id_Disciplina"]));
                                 profe.DNI = Convert.ToInt32(reader["DNI"]);
                                 return profe;
                             }
                             else
                             {
-                                return null; // No se encontró el profesor
+                                return null;
                             }
                         }
                     }

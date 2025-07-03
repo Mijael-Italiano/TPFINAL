@@ -11,6 +11,7 @@ namespace Business
     public class ClaseBusiness
     {
         ClaseData claseData = new ClaseData();
+
         public List<Clase> GetLista()
         {
             try

@@ -6,40 +6,38 @@ using System.Threading.Tasks;
 using Entity;
 using System.Data.SqlClient;
 using System.Configuration;
+using Mapper;
 
 namespace Data
 {
     public class ClaseData
     {
+        DisciplinaData disciplinaData = new DisciplinaData();
         public List<Clase> ObtenerClases()
         {
             try
             {
-                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString);
-                using (connection)
+                List<Clase> clases = new List<Clase>();
+
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
                 {
                     connection.Open();
-                    string query = "SELECT * FROM Clases";
+                    string query = "SELECT Id_Clase, Cantidad_Inscriptos, CuotaMensual, Id_Disciplina FROM Clases";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            List<Clase> lista = new List<Clase>();
                             while (reader.Read())
                             {
-                                Clase clase = new Clase
-                                {
-                                    Id_Clase = Convert.ToInt32(reader["Id_Clase"]),
-                                    Nombre_Clase = reader["Nombre_Clase"].ToString(),
-                                    Cantidad_Inscriptos = Convert.ToInt32(reader["Cantidad_Inscriptos"]),
-                                    CuotaMensual = reader["CuotaMensual"].ToString()
-                                };
-                                lista.Add(clase);
+                                int idDisciplina = Convert.ToInt32(reader["Id_Disciplina"]);
+                                Disciplina disciplina = disciplinaData.GetDisciplinaById(idDisciplina);
+                                clases.Add(ClaseMapper.Map(reader, disciplina));
                             }
-                            return lista;
                         }
                     }
                 }
+
+                return clases;
             }
             catch (Exception)
             {
@@ -61,24 +59,17 @@ namespace Data
                         command.Parameters.AddWithValue("@Id", id);
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            if (reader.Read())
+                            while (reader.Read())
                             {
-                                Clase clase = new Clase
-                                {
-                                    Id_Clase = Convert.ToInt32(reader["Id_Clase"]),
-                                    Nombre_Clase = reader["Nombre_Clase"].ToString(),
-                                    Cantidad_Inscriptos = Convert.ToInt32(reader["Cantidad_Inscriptos"]),
-                                    CuotaMensual = reader["CuotaMensual"].ToString()
-                                };
-                                return clase;
-                            }
-                            else
-                            {
-                                return null;
+                                int idDisciplina = Convert.ToInt32(reader["Id_Disciplina"]);
+                                Disciplina disciplina = disciplinaData.GetDisciplinaById(idDisciplina);
+                                return ClaseMapper.Map(reader, disciplina);
                             }
                         }
                     }
                 }
+
+                return null;
             }
             catch (Exception)
             {
