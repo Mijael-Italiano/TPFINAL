@@ -61,7 +61,7 @@
             grillaClase.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             grillaClase.Location = new Point(705, 12);
             grillaClase.Name = "grillaClase";
-            grillaClase.Size = new Size(560, 382);
+            grillaClase.Size = new Size(560, 391);
             grillaClase.TabIndex = 1;
             // 
             // grillaProfesor
@@ -74,7 +74,7 @@
             // 
             // btnDetalleClase
             // 
-            btnDetalleClase.Location = new Point(705, 416);
+            btnDetalleClase.Location = new Point(705, 423);
             btnDetalleClase.Name = "btnDetalleClase";
             btnDetalleClase.Size = new Size(122, 38);
             btnDetalleClase.TabIndex = 4;
@@ -122,7 +122,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(856, 415);
+            button1.Location = new Point(857, 423);
             button1.Name = "button1";
             button1.Size = new Size(126, 38);
             button1.TabIndex = 9;
@@ -132,7 +132,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(1008, 415);
+            button2.Location = new Point(1010, 421);
             button2.Name = "button2";
             button2.Size = new Size(119, 38);
             button2.TabIndex = 10;
@@ -141,7 +141,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(1158, 415);
+            button3.Location = new Point(1158, 422);
             button3.Name = "button3";
             button3.Size = new Size(107, 39);
             button3.TabIndex = 11;

@@ -46,8 +46,28 @@ namespace TPFinal
 
         private void LlenarGrillaProfesor()
         {
+            List<Profesor> profesores = profesorBusiness.GetLista();
+
+            DataTable tabla = new DataTable();
+            tabla.Columns.Add("ID_Profesor", typeof(int));
+            tabla.Columns.Add("Nombre", typeof(string));
+            tabla.Columns.Add("Apellido", typeof(string));
+            tabla.Columns.Add("DNI", typeof(int));
+            tabla.Columns.Add("Disciplina", typeof(string)); 
+
+            foreach (Profesor p in profesores)
+            {
+                DataRow fila = tabla.NewRow();
+                fila["ID_Profesor"] = p.ID_Profesor;
+                fila["Nombre"] = p.Nombre;
+                fila["Apellido"] = p.Apellido;
+                fila["DNI"] = p.DNI;
+                fila["Disciplina"] = p.Disciplina.Nombre_Disciplina; 
+                tabla.Rows.Add(fila);
+            }
+
             grillaProfesor.DataSource = null;
-            grillaProfesor.DataSource = profesorBusiness.GetLista();
+            grillaProfesor.DataSource = tabla;
         }
 
         private void LlenarGrillaInscripto()
@@ -104,9 +124,8 @@ namespace TPFinal
             else
             {
                 int idInscripto = Convert.ToInt32(grillaInscripto.SelectedRows[0].Cells["ID_Inscripto"].Value);
-                //               int idInscripto = ((Inscripto)grillaInscripto.SelectedRows[0].DataBoundItem).ID_Inscripto;
-                int idClase = ((Clase)grillaClase.SelectedRows[0].DataBoundItem).Id_Clase;
-                DataGridViewRow filaSeleccionada = grillaInscripto.SelectedRows[0];
+                int idClase = Convert.ToInt32(grillaClase.SelectedRows[0].Cells["ID_Clase"].Value);
+
                 inscriptoBusiness.AsignarClaseAInscripto(idInscripto, idClase);
                 LlenarGrillaInscripto();
                 LlenarGrillaClase();
