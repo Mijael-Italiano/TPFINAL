@@ -116,6 +116,21 @@ namespace Data
             }
         }
 
+        public int? GetIdClaseDeInscripto(int idInscripto)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+            {
+                connection.Open();
+                string query = "SELECT ID_Clase FROM Inscriptos WHERE ID_Inscripto = @Id";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", idInscripto);
+                    object result = command.ExecuteScalar();
+                    return result == DBNull.Value ? (int?)null : Convert.ToInt32(result);
+                }
+            }
+        }
+
         public void AsociarClase(int idInscripto, int idClase)
         {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
