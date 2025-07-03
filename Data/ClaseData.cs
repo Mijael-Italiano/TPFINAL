@@ -22,7 +22,7 @@ namespace Data
                 using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
                 {
                     connection.Open();
-                    string query = "SELECT Id_Clase, Cantidad_Inscriptos, CuotaMensual, Id_Disciplina FROM Clases";
+                    string query = "SELECT Id_Clase, Cantidad_Inscriptos, CuotaMensual, Id_Disciplina, Maximo_Inscriptos FROM Clases";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())

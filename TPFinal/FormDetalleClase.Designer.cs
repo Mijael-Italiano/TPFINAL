@@ -35,9 +35,9 @@
             // grillaClaseDetalle
             // 
             grillaClaseDetalle.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grillaClaseDetalle.Location = new Point(141, 55);
+            grillaClaseDetalle.Location = new Point(46, 55);
             grillaClaseDetalle.Name = "grillaClaseDetalle";
-            grillaClaseDetalle.Size = new Size(443, 158);
+            grillaClaseDetalle.Size = new Size(689, 197);
             grillaClaseDetalle.TabIndex = 0;
             // 
             // FormDetalleClase

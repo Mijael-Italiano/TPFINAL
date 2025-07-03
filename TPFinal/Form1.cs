@@ -20,8 +20,28 @@ namespace TPFinal
 
         private void LlenarGrillaClase()
         {
+            List<Clase> clases = claseBusiness.GetLista();
+
+            DataTable tabla = new DataTable();
+            tabla.Columns.Add("ID_Clase", typeof(int));
+            tabla.Columns.Add("Cantidad_Inscriptos", typeof(int));
+            tabla.Columns.Add("CuotaMensual", typeof(string));
+            tabla.Columns.Add("Disciplina", typeof(string));
+            tabla.Columns.Add("Maximo_Inscriptos", typeof(int));
+
+            foreach (Clase c in clases)
+            {
+                DataRow fila = tabla.NewRow();
+                fila["ID_Clase"] = c.Id_Clase;
+                fila["Cantidad_Inscriptos"] = c.Cantidad_Inscriptos;
+                fila["CuotaMensual"] = c.CuotaMensual;
+                fila["Disciplina"] = c.Disciplina.Nombre_Disciplina;
+                fila["Maximo_Inscriptos"] = c.Maximo_Alumnos;
+                tabla.Rows.Add(fila);
+            }
+
             grillaClase.DataSource = null;
-            grillaClase.DataSource = claseBusiness.GetLista();
+            grillaClase.DataSource = tabla;
         }
 
         private void LlenarGrillaProfesor()

@@ -59,22 +59,22 @@
             // grillaClase
             // 
             grillaClase.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grillaClase.Location = new Point(661, 21);
+            grillaClase.Location = new Point(705, 12);
             grillaClase.Name = "grillaClase";
-            grillaClase.Size = new Size(526, 382);
+            grillaClase.Size = new Size(560, 382);
             grillaClase.TabIndex = 1;
             // 
             // grillaProfesor
             // 
             grillaProfesor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grillaProfesor.Location = new Point(661, 481);
+            grillaProfesor.Location = new Point(47, 481);
             grillaProfesor.Name = "grillaProfesor";
-            grillaProfesor.Size = new Size(509, 115);
+            grillaProfesor.Size = new Size(648, 115);
             grillaProfesor.TabIndex = 3;
             // 
             // btnDetalleClase
             // 
-            btnDetalleClase.Location = new Point(661, 416);
+            btnDetalleClase.Location = new Point(705, 416);
             btnDetalleClase.Name = "btnDetalleClase";
             btnDetalleClase.Size = new Size(122, 38);
             btnDetalleClase.TabIndex = 4;
@@ -122,7 +122,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(801, 416);
+            button1.Location = new Point(856, 415);
             button1.Name = "button1";
             button1.Size = new Size(126, 38);
             button1.TabIndex = 9;
@@ -132,7 +132,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(947, 416);
+            button2.Location = new Point(1008, 415);
             button2.Name = "button2";
             button2.Size = new Size(119, 38);
             button2.TabIndex = 10;
@@ -141,7 +141,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(1080, 415);
+            button3.Location = new Point(1158, 415);
             button3.Name = "button3";
             button3.Size = new Size(107, 39);
             button3.TabIndex = 11;
@@ -150,7 +150,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(672, 621);
+            button4.Location = new Point(47, 615);
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 12;
@@ -159,7 +159,7 @@
             // 
             // button5
             // 
-            button5.Location = new Point(786, 628);
+            button5.Location = new Point(153, 615);
             button5.Name = "button5";
             button5.Size = new Size(75, 23);
             button5.TabIndex = 13;
@@ -168,7 +168,7 @@
             // 
             // button6
             // 
-            button6.Location = new Point(897, 615);
+            button6.Location = new Point(275, 615);
             button6.Name = "button6";
             button6.Size = new Size(75, 23);
             button6.TabIndex = 14;
@@ -177,7 +177,7 @@
             // 
             // button7
             // 
-            button7.Location = new Point(1032, 617);
+            button7.Location = new Point(401, 615);
             button7.Name = "button7";
             button7.Size = new Size(75, 23);
             button7.TabIndex = 15;
@@ -188,7 +188,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1233, 667);
+            ClientSize = new Size(1277, 663);
             Controls.Add(button7);
             Controls.Add(button6);
             Controls.Add(button5);

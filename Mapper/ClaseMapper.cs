@@ -17,7 +17,8 @@ namespace Mapper
                 Id_Clase = Convert.ToInt32(reader["Id_Clase"]),
                 Disciplina = disciplina,
                 Cantidad_Inscriptos = Convert.ToInt32(reader["Cantidad_Inscriptos"]),
-                CuotaMensual = reader["CuotaMensual"].ToString()
+                CuotaMensual = reader["CuotaMensual"].ToString(),
+                Maximo_Alumnos = Convert.ToInt32(reader["Maximo_Inscriptos"])
             };
         }
     }
