@@ -20,25 +20,18 @@ namespace Data
             {
                 using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
                 {
-                    using (connection)
+                    connection.Open();
+                    string query = "SELECT * FROM Profesores";
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        connection.Open();
-                        string query = "SELECT * FROM Profesores";
-                        SqlCommand command = new SqlCommand(query, connection);
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             List<Profesor> lista = new List<Profesor>();
                             while (reader.Read())
                             {
-                                Profesor profe = new Profesor();
-                                profe.ID_Profesor = Convert.ToInt32(reader["ID_Profesor"]);
-                                profe.Nombre = reader["Nombre"].ToString();
-                                profe.Apellido = reader["Apellido"].ToString();
-                                profe.Sueldo = Convert.ToInt32(reader["Sueldo"]);
- 
-                                profe.Disciplina = disciplinaData.GetDisciplinaById(Convert.ToInt32(reader["Id_Disciplina"]));
-                                profe.DNI = Convert.ToInt32(reader["DNI"]);
-                                lista.Add(profe);
+                                int idDisciplina = Convert.ToInt32(reader["Id_Disciplina"]);
+                                Disciplina disciplina = disciplinaData.GetDisciplinaById(idDisciplina);
+                                lista.Add(ProfesorMapper.Map(reader, disciplina));
                             }
                             return lista;
                         }
@@ -51,6 +44,31 @@ namespace Data
             }
         }
 
+        public void AgregarProfesor(Profesor profesor)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+                {
+                    connection.Open();
+                    string query = "INSERT INTO Profesores (Nombre, Apellido, DNI, Id_Disciplina, Sueldo) " +
+                                   "VALUES (@Nombre, @Apellido, @DNI, @Disciplina, @Sueldo)";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Nombre", profesor.Nombre);
+                        command.Parameters.AddWithValue("@Apellido", profesor.Apellido);
+                        command.Parameters.AddWithValue("@DNI", profesor.DNI);
+                        command.Parameters.AddWithValue("@Disciplina", profesor.Disciplina.Id_Disciplina);
+                        command.Parameters.AddWithValue("@Sueldo", profesor.Sueldo);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         public Profesor GetProfesorById(int id)
         {
@@ -68,22 +86,14 @@ namespace Data
                         {
                             if (reader.Read())
                             {
-                                Profesor profe = new Profesor();
-                                profe.ID_Profesor = Convert.ToInt32(reader["ID_Profesor"]);
-                                profe.Nombre = reader["Nombre"].ToString();
-                                profe.Apellido = reader["Apellido"].ToString();
-                                profe.Sueldo = Convert.ToInt32(reader["Sueldo"]);
-                                profe.Disciplina = disciplinaData.GetDisciplinaById(Convert.ToInt32(reader["Id_Disciplina"]));
-                                profe.DNI = Convert.ToInt32(reader["DNI"]);
-                                return profe;
-                            }
-                            else
-                            {
-                                return null;
+                                int idDisciplina = Convert.ToInt32(reader["Id_Disciplina"]);
+                                Disciplina disciplina = disciplinaData.GetDisciplinaById(idDisciplina);
+                                return ProfesorMapper.Map(reader, disciplina);
                             }
                         }
                     }
                 }
+                return null;
             }
             catch (Exception)
             {

@@ -29,15 +29,11 @@ namespace Data
                             List<Inscripto> lista = new List<Inscripto>();
                             while (reader.Read())
                             {
-                                Inscripto i = new Inscripto();
-                                i.ID_Inscripto = Convert.ToInt32(reader["ID_Inscripto"]);
-                                i.clase = reader["ID_Clase"] == DBNull.Value
+                                Clase clase = reader["ID_Clase"] == DBNull.Value
                                     ? null
                                     : claseData.GetClaseById(Convert.ToInt32(reader["ID_Clase"]));
-                                i.Nombre = reader["Nombre"].ToString();
-                                i.Apellido = reader["Apellido"].ToString();
-                                i.DNI = Convert.ToInt32(reader["DNI"]);
-                                lista.Add(i);
+
+                                lista.Add(InscriptoMapper.Map(reader, clase));
                             }
                             return lista;
                         }
@@ -66,17 +62,11 @@ namespace Data
                         {
                             if (reader.Read())
                             {
-                                Inscripto inscripto = new Inscripto
-                                {
-                                    ID_Inscripto = Convert.ToInt32(reader["ID_Inscripto"]),
-                                    Nombre = reader["Nombre"].ToString(),
-                                    Apellido = reader["Apellido"].ToString(),
-                                    DNI = Convert.ToInt32(reader["DNI"]),
-                                    clase = reader["ID_Clase"] == DBNull.Value
-                                        ? null
-                                        : claseData.GetClaseById(Convert.ToInt32(reader["ID_Clase"]))
-                                };
-                                return inscripto;
+                                Clase clase = reader["ID_Clase"] == DBNull.Value
+                                    ? null
+                                    : claseData.GetClaseById(Convert.ToInt32(reader["ID_Clase"]));
+
+                                return InscriptoMapper.Map(reader, clase);
                             }
                             else
                             {

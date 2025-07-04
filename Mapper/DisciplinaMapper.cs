@@ -10,5 +10,13 @@ namespace Mapper
 {
     public class DisciplinaMapper
     {
+        public static Disciplina Map(SqlDataReader reader)
+        {
+            return new Disciplina
+            {
+                Id_Disciplina = Convert.ToInt32(reader["Id_Disciplina"]),
+                Nombre_Disciplina = reader["Nombre_Disciplina"].ToString()
+            };
+        }
     }
 }

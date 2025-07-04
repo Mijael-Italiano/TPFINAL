@@ -53,7 +53,8 @@ namespace TPFinal
             tabla.Columns.Add("Nombre", typeof(string));
             tabla.Columns.Add("Apellido", typeof(string));
             tabla.Columns.Add("DNI", typeof(int));
-            tabla.Columns.Add("Disciplina", typeof(string)); 
+            tabla.Columns.Add("Disciplina", typeof(string));
+            tabla.Columns.Add("Sueldo", typeof(decimal)); // 
 
             foreach (Profesor p in profesores)
             {
@@ -62,7 +63,8 @@ namespace TPFinal
                 fila["Nombre"] = p.Nombre;
                 fila["Apellido"] = p.Apellido;
                 fila["DNI"] = p.DNI;
-                fila["Disciplina"] = p.Disciplina.Nombre_Disciplina; 
+                fila["Disciplina"] = p.Disciplina.Nombre_Disciplina;
+                fila["Sueldo"] = p.Sueldo;
                 tabla.Rows.Add(fila);
             }
 
@@ -137,7 +139,16 @@ namespace TPFinal
             FormAgregarClase formAgregarClase = new FormAgregarClase();
             if (formAgregarClase.ShowDialog() == DialogResult.OK)
             {
-                LlenarGrillaInscripto();
+                LlenarGrillaClase();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FormAgregarProfesor formAgregarProfesor = new FormAgregarProfesor();
+            if (formAgregarProfesor.ShowDialog() == DialogResult.OK)
+            {
+                LlenarGrillaProfesor(); // asumimos que ya tenés este método
             }
         }
     }

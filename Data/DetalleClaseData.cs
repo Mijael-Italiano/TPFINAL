@@ -30,14 +30,11 @@ namespace Data
                             List<DetalleClase> lista = new List<DetalleClase>();
                             while (reader.Read())
                             {
-                                DetalleClase dc = new DetalleClase();
-                                dc.Id_Detalle_Clases = Convert.ToInt32(reader["Id_Detalle_Clases"]);
-                                dc.Dia = reader["Dia"].ToString();
-                                dc.Horario_Inicio = (TimeSpan)reader["Horario_Inicio"];
-                                dc.Horario_Fin = (TimeSpan)reader["Horario_Fin"];
-                                dc.profesor = profesorData.GetProfesorById(Convert.ToInt32(reader["ID_Profesor"]));
-                                dc.clase = claseData.GetClaseById(Convert.ToInt32(reader["ID_Clase"]));
-                                lista.Add(dc);
+                                int idProfesor = Convert.ToInt32(reader["ID_Profesor"]);
+                                int idClase = Convert.ToInt32(reader["ID_Clase"]);
+                                Profesor profesor = profesorData.GetProfesorById(idProfesor);
+                                Clase clase = claseData.GetClaseById(idClase);
+                                lista.Add(DetalleClaseMapper.Map(reader, profesor, clase));
                             }
                             return lista;
                         }

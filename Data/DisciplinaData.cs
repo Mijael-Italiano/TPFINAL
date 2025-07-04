@@ -27,12 +27,7 @@ namespace Data
                         {
                             if (reader.Read())
                             {
-                                Disciplina disciplina = new Disciplina
-                                {
-                                    Id_Disciplina = Convert.ToInt32(reader["Id_Disciplina"]),
-                                    Nombre_Disciplina = reader["Nombre_Disciplina"].ToString()
-                                };
-                                return disciplina;
+                                return DisciplinaMapper.Map(reader);
                             }
                             else
                             {
@@ -47,5 +42,29 @@ namespace Data
                 throw;
             }
         }
+
+        public List<Disciplina> ObtenerDisciplinas()
+        {
+            List<Disciplina> lista = new List<Disciplina>();
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+            {
+                connection.Open();
+                string query = "SELECT * FROM Disciplina";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(DisciplinaMapper.Map(reader));
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+
+
+
     }
 }

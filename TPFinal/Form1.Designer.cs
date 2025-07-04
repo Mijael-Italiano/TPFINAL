@@ -51,7 +51,7 @@
             // grillaInscripto
             // 
             grillaInscripto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grillaInscripto.Location = new Point(47, 21);
+            grillaInscripto.Location = new Point(47, 12);
             grillaInscripto.Name = "grillaInscripto";
             grillaInscripto.Size = new Size(569, 382);
             grillaInscripto.TabIndex = 0;
@@ -67,14 +67,14 @@
             // grillaProfesor
             // 
             grillaProfesor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grillaProfesor.Location = new Point(47, 481);
+            grillaProfesor.Location = new Point(47, 457);
             grillaProfesor.Name = "grillaProfesor";
-            grillaProfesor.Size = new Size(648, 115);
+            grillaProfesor.Size = new Size(648, 208);
             grillaProfesor.TabIndex = 3;
             // 
             // btnDetalleClase
             // 
-            btnDetalleClase.Location = new Point(705, 423);
+            btnDetalleClase.Location = new Point(705, 409);
             btnDetalleClase.Name = "btnDetalleClase";
             btnDetalleClase.Size = new Size(122, 38);
             btnDetalleClase.TabIndex = 4;
@@ -84,7 +84,7 @@
             // 
             // btnAgregarInscripto
             // 
-            btnAgregarInscripto.Location = new Point(47, 421);
+            btnAgregarInscripto.Location = new Point(47, 400);
             btnAgregarInscripto.Name = "btnAgregarInscripto";
             btnAgregarInscripto.Size = new Size(121, 40);
             btnAgregarInscripto.TabIndex = 5;
@@ -94,7 +94,7 @@
             // 
             // btnModificarInscripto
             // 
-            btnModificarInscripto.Location = new Point(193, 421);
+            btnModificarInscripto.Location = new Point(197, 399);
             btnModificarInscripto.Name = "btnModificarInscripto";
             btnModificarInscripto.Size = new Size(123, 38);
             btnModificarInscripto.TabIndex = 6;
@@ -103,7 +103,7 @@
             // 
             // btnEliminarInscripto
             // 
-            btnEliminarInscripto.Location = new Point(343, 421);
+            btnEliminarInscripto.Location = new Point(349, 400);
             btnEliminarInscripto.Name = "btnEliminarInscripto";
             btnEliminarInscripto.Size = new Size(123, 37);
             btnEliminarInscripto.TabIndex = 7;
@@ -112,7 +112,7 @@
             // 
             // BtnAsignarClase
             // 
-            BtnAsignarClase.Location = new Point(493, 421);
+            BtnAsignarClase.Location = new Point(493, 399);
             BtnAsignarClase.Name = "BtnAsignarClase";
             BtnAsignarClase.Size = new Size(123, 37);
             BtnAsignarClase.TabIndex = 8;
@@ -122,7 +122,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(857, 423);
+            button1.Location = new Point(854, 409);
             button1.Name = "button1";
             button1.Size = new Size(126, 38);
             button1.TabIndex = 9;
@@ -132,7 +132,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(1010, 421);
+            button2.Location = new Point(997, 409);
             button2.Name = "button2";
             button2.Size = new Size(119, 38);
             button2.TabIndex = 10;
@@ -141,7 +141,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(1158, 422);
+            button3.Location = new Point(1146, 408);
             button3.Name = "button3";
             button3.Size = new Size(107, 39);
             button3.TabIndex = 11;
@@ -150,34 +150,35 @@
             // 
             // button4
             // 
-            button4.Location = new Point(47, 615);
+            button4.Location = new Point(292, 671);
             button4.Name = "button4";
-            button4.Size = new Size(75, 23);
+            button4.Size = new Size(112, 36);
             button4.TabIndex = 12;
-            button4.Text = "button4";
+            button4.Text = "Agregar profesor";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button5
             // 
-            button5.Location = new Point(153, 615);
+            button5.Location = new Point(421, 671);
             button5.Name = "button5";
-            button5.Size = new Size(75, 23);
+            button5.Size = new Size(127, 37);
             button5.TabIndex = 13;
-            button5.Text = "button5";
+            button5.Text = "Modificar profesor";
             button5.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
-            button6.Location = new Point(275, 615);
+            button6.Location = new Point(574, 671);
             button6.Name = "button6";
-            button6.Size = new Size(75, 23);
+            button6.Size = new Size(121, 36);
             button6.TabIndex = 14;
-            button6.Text = "button6";
+            button6.Text = "Eliminar profesor";
             button6.UseVisualStyleBackColor = true;
             // 
             // button7
             // 
-            button7.Location = new Point(401, 615);
+            button7.Location = new Point(1164, 589);
             button7.Name = "button7";
             button7.Size = new Size(75, 23);
             button7.TabIndex = 15;
@@ -188,7 +189,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1277, 663);
+            ClientSize = new Size(1277, 718);
             Controls.Add(button7);
             Controls.Add(button6);
             Controls.Add(button5);

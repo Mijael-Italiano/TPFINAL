@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            cmbClase = new ComboBox();
+            cmbAgregarClase = new ComboBox();
             label1 = new Label();
             label2 = new Label();
-            txtMaximoInscriptos = new TextBox();
-            txtCuotaMensual = new TextBox();
+            txtAgregarCuotaMensual = new TextBox();
             label3 = new Label();
             lblAgregarClase = new Label();
             btnAgregarClase = new Button();
+            txtAgregarMaximoInscriptos = new TextBox();
             SuspendLayout();
             // 
-            // cmbClase
+            // cmbAgregarClase
             // 
-            cmbClase.FormattingEnabled = true;
-            cmbClase.Location = new Point(32, 75);
-            cmbClase.Name = "cmbClase";
-            cmbClase.Size = new Size(121, 23);
-            cmbClase.TabIndex = 0;
+            cmbAgregarClase.FormattingEnabled = true;
+            cmbAgregarClase.Location = new Point(32, 75);
+            cmbAgregarClase.Name = "cmbAgregarClase";
+            cmbAgregarClase.Size = new Size(121, 23);
+            cmbAgregarClase.TabIndex = 0;
             // 
             // label1
             // 
@@ -64,19 +64,12 @@
             label2.TabIndex = 2;
             label2.Text = "Maximo de inscriptos";
             // 
-            // txtMaximoInscriptos
+            // txtAgregarCuotaMensual
             // 
-            txtMaximoInscriptos.Location = new Point(32, 156);
-            txtMaximoInscriptos.Name = "txtMaximoInscriptos";
-            txtMaximoInscriptos.Size = new Size(121, 23);
-            txtMaximoInscriptos.TabIndex = 3;
-            // 
-            // txtCuotaMensual
-            // 
-            txtCuotaMensual.Location = new Point(32, 237);
-            txtCuotaMensual.Name = "txtCuotaMensual";
-            txtCuotaMensual.Size = new Size(121, 23);
-            txtCuotaMensual.TabIndex = 4;
+            txtAgregarCuotaMensual.Location = new Point(32, 237);
+            txtAgregarCuotaMensual.Name = "txtAgregarCuotaMensual";
+            txtAgregarCuotaMensual.Size = new Size(121, 23);
+            txtAgregarCuotaMensual.TabIndex = 4;
             // 
             // label3
             // 
@@ -107,19 +100,26 @@
             btnAgregarClase.UseVisualStyleBackColor = true;
             btnAgregarClase.Click += btnAgregarClase_Click;
             // 
+            // txtAgregarMaximoInscriptos
+            // 
+            txtAgregarMaximoInscriptos.Location = new Point(32, 156);
+            txtAgregarMaximoInscriptos.Name = "txtAgregarMaximoInscriptos";
+            txtAgregarMaximoInscriptos.Size = new Size(121, 23);
+            txtAgregarMaximoInscriptos.TabIndex = 8;
+            // 
             // FormAgregarClase
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(402, 321);
+            Controls.Add(txtAgregarMaximoInscriptos);
             Controls.Add(btnAgregarClase);
             Controls.Add(lblAgregarClase);
             Controls.Add(label3);
-            Controls.Add(txtCuotaMensual);
-            Controls.Add(txtMaximoInscriptos);
+            Controls.Add(txtAgregarCuotaMensual);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(cmbClase);
+            Controls.Add(cmbAgregarClase);
             Name = "FormAgregarClase";
             Text = "FormAgregarClase";
             ResumeLayout(false);
@@ -128,13 +128,13 @@
 
         #endregion
 
-        private ComboBox cmbClase;
+        private ComboBox cmbAgregarClase;
         private Label label1;
         private Label label2;
-        private TextBox txtMaximoInscriptos;
-        private TextBox txtCuotaMensual;
+        private TextBox txtAgregarCuotaMensual;
         private Label label3;
         private Label lblAgregarClase;
         private Button btnAgregarClase;
+        private TextBox txtAgregarMaximoInscriptos;
     }
 }

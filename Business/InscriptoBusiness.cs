@@ -57,15 +57,16 @@ namespace Business
                 using (TransactionScope scope = new TransactionScope())
                 {
                     int? idClaseActual = inscriptoData.GetIdClaseDeInscripto(idInscripto);
-                    if (idClaseActual.Value == idClase)
-                    {
-                        return;
-                    }
 
-                    if (idClaseActual.HasValue && idClaseActual.Value != idClase)
+                    if (idClaseActual.HasValue)
                     {
+                        if (idClaseActual.Value == idClase)
+                        {
+                            return;
+                        }
                         claseBusiness.DisminuirCantidadInscriptos(idClaseActual.Value);
                     }
+
                     inscriptoData.AsociarClase(idInscripto, idClase);
                     claseBusiness.AumentarCantidadInscriptos(idClase);
                     scope.Complete();

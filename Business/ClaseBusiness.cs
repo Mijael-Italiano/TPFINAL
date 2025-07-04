@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Entity;
 using Data;
+using System.Transactions;
 
 namespace Business
 {
@@ -28,6 +29,46 @@ namespace Business
             claseData.DecrementarCantidadInscriptos(idClase);
         }
 
+        public void AgregarClase(Clase clase)
+        {
+            try
+            {
+                List<Clase> clasesExistentes = GetLista();
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    Clase claseGimnasioExistente = clasesExistentes.Find(c => c.Disciplina.Nombre_Disciplina == "Gimnasio");
+                    if (clase.Disciplina.Nombre_Disciplina == "Gimnasio" && claseGimnasioExistente != null)
+                    {
+                        throw new Exception("Ya existe una clase para la disciplina 'Gimnasio'.");
+                    }
+                    ValidarClase(clase);
+                    claseData.AgregarClase(clase);
+                    scope.Complete();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void ValidarClase(Clase clase)
+        {
+            if (clase.CuotaMensual <= 0)
+            {
+                throw new Exception("La cuota mensual debe ser mayor a cero.");
+            }
+
+            if (clase.Maximo_Alumnos <= 0)
+            {
+                throw new Exception("El máximo de inscriptos debe ser mayor a cero.");
+            }
+
+            if (clase.Disciplina == null)
+            {
+                throw new Exception("Debe seleccionar una disciplina.");
+            }
+        }
 
         public void AumentarCantidadInscriptos(int idClase)
         {

@@ -93,6 +93,33 @@ namespace Data
             }
         }
 
+
+        public void AgregarClase(Clase clase)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+                {
+                    connection.Open();
+                    string query = "INSERT INTO Clases (Cantidad_Inscriptos, CuotaMensual, Id_Disciplina, Maximo_Inscriptos) " +
+                                   "VALUES (@Cantidad, @Cuota, @Disciplina, @Maximo)";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Cantidad", clase.Cantidad_Inscriptos);
+                        command.Parameters.AddWithValue("@Cuota", clase.CuotaMensual);
+                        command.Parameters.AddWithValue("@Disciplina", clase.Disciplina.Id_Disciplina);
+                        command.Parameters.AddWithValue("@Maximo", clase.Maximo_Alumnos);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public void DecrementarCantidadInscriptos(int idClase)
         {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
