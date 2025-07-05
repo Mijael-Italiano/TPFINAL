@@ -109,6 +109,7 @@
             btnEliminarInscripto.TabIndex = 7;
             btnEliminarInscripto.Text = "Eliminar Inscripto";
             btnEliminarInscripto.UseVisualStyleBackColor = true;
+            btnEliminarInscripto.Click += btnEliminarInscripto_Click;
             // 
             // BtnAsignarClase
             // 

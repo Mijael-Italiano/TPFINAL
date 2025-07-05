@@ -106,6 +106,29 @@ namespace Data
             }
         }
 
+
+        public void DeleteById(int idInscripto)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+                {
+                    conexion.Open();
+
+                    string query = "DELETE FROM INSCRIPTOS WHERE ID_INSCRIPTO = @id";
+                    using (SqlCommand command = new SqlCommand(query, conexion))
+                    {
+                        command.Parameters.AddWithValue("@id", idInscripto);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public int? GetIdClaseDeInscripto(int idInscripto)
         {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))

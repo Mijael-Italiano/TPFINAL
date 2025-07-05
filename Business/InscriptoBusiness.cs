@@ -77,5 +77,29 @@ namespace Business
                 throw new Exception("Error al asignar la clase al inscripto.", ex);
             }
         }
+
+        public void DeleteById(int idInscripto)
+        {
+            try
+            {
+                Inscripto inscriptoFromDb = inscriptoData.GetInscriptoById(idInscripto);
+
+                using (TransactionScope trx = new TransactionScope())
+                {
+                    if (inscriptoFromDb.clase != null)
+                    {
+                        claseBusiness.DisminuirCantidadInscriptos(inscriptoFromDb.clase.Id_Clase);
+                    }
+                    inscriptoData.DeleteById(idInscripto);
+                    trx.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar el inscripto.", ex);
+            }
+        }
+
+
     }
 }

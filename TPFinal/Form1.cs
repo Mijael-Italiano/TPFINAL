@@ -157,7 +157,27 @@ namespace TPFinal
             FormAgregarProfesor formAgregarProfesor = new FormAgregarProfesor();
             if (formAgregarProfesor.ShowDialog() == DialogResult.OK)
             {
-                LlenarGrillaProfesor(); 
+                LlenarGrillaProfesor();
+            }
+        }
+
+        private void btnEliminarInscripto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grillaInscripto.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Debe seleccionar una fila para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                int idInscripto = Convert.ToInt32(grillaInscripto.SelectedRows[0].Cells["ID_Inscripto"].Value);
+                inscriptoBusiness.DeleteById(idInscripto);
+                LlenarGrillaInscripto(); 
+                MessageBox.Show("Inscripto eliminado correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar inscripto: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
