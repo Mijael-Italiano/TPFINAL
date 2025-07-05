@@ -172,13 +172,34 @@ namespace TPFinal
                 }
                 int idInscripto = Convert.ToInt32(grillaInscripto.SelectedRows[0].Cells["ID_Inscripto"].Value);
                 inscriptoBusiness.DeleteById(idInscripto);
-                LlenarGrillaInscripto(); 
+                LlenarGrillaInscripto();
                 MessageBox.Show("Inscripto eliminado correctamente.");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al eliminar inscripto: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+           try
+           {
+               if (grillaClase.SelectedRows.Count == 0)
+               {
+                   MessageBox.Show("Debe seleccionar una clase para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   return;
+               }
+
+               int idClase = Convert.ToInt32(grillaClase.SelectedRows[0].Cells["ID_Clase"].Value);
+               claseBusiness.DeleteById(idClase);
+               LlenarGrillaClase();
+               MessageBox.Show("Clase eliminada correctamente.");
+           }
+           catch (Exception ex)
+           {
+               MessageBox.Show("Error al eliminar la clase: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           }
         }
     }
 }

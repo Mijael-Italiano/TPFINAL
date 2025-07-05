@@ -176,6 +176,7 @@
             button6.TabIndex = 14;
             button6.Text = "Eliminar profesor";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // button7
             // 
