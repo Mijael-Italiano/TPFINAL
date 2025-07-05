@@ -42,6 +42,9 @@ namespace Business
             claseData.DecrementarCantidadInscriptos(idClase);
         }
 
+
+
+
         public void AgregarClase(Clase clase)
         {
             try

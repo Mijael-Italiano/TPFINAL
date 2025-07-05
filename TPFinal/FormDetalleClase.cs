@@ -29,6 +29,7 @@ namespace TPFinal
                 List<DetalleClase> detalles = detalleClaseBusiness.GetPorClase(ClaseSeleccionada.Clase);
 
                 DataTable tabla = new DataTable();
+                tabla.Columns.Add("ID_Detalle_Clases", typeof(int));
                 tabla.Columns.Add("ID_Clase", typeof(int));
                 tabla.Columns.Add("Nombre_Profesor", typeof(string));
                 tabla.Columns.Add("Apellido_Profesor", typeof(string));
@@ -39,6 +40,7 @@ namespace TPFinal
                 foreach (DetalleClase detalle in detalles)
                 {
                     DataRow fila = tabla.NewRow();
+                    fila["ID_Detalle_Clases"] = detalle.Id_Detalle_Clases; 
                     fila["ID_Clase"] = detalle.clase.Id_Clase;
                     fila["Nombre_Profesor"] = detalle.profesor.Nombre;
                     fila["Apellido_Profesor"] = detalle.profesor.Apellido;
@@ -75,7 +77,23 @@ namespace TPFinal
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (grillaClaseDetalle.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Debe seleccionar una fila para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
+                int idDetalle = Convert.ToInt32(grillaClaseDetalle.SelectedRows[0].Cells["ID_Detalle_Clases"].Value);
+                detalleClaseBusiness.DeleteById(idDetalle);
+                LlenarGrillaDetalleClase(); // asumimos que ya tenés esta función
+                MessageBox.Show("Turno eliminado correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el turno: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

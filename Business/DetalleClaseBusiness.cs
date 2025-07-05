@@ -77,5 +77,25 @@ namespace Business
             }
         }
 
+        public void DeleteById(int id)
+        {
+            try
+            {
+
+                using (TransactionScope trx = new TransactionScope())
+                {
+                    detalleClaseData.DeleteById(id);
+                    trx.Complete();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+
+
     }
 }

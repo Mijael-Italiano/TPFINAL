@@ -84,6 +84,28 @@ namespace Data
             }
         }
 
+
+        public void DeleteById(int id)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+                {
+                    conexion.Open();
+                    string query = "DELETE FROM Detalle_Clase WHERE ID_Detalle_Clases = @id";
+                    using (SqlCommand command = new SqlCommand(query, conexion))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public void Agregar(DetalleClase detalle)
         {
             try
@@ -149,5 +171,44 @@ namespace Data
                 throw;
             }
         }
+
+
+    /*    public DetalleClase GetById(int id)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Detalle_Clase WHERE ID_Detalle_Clases = @id";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int idProfesor = Convert.ToInt32(reader["ID_Profesor"]);
+                                int idClase = Convert.ToInt32(reader["ID_Clase"]);
+
+                                Profesor profesor = profesorData.GetProfesorById(idProfesor);
+                                Clase clase = claseData.GetClaseById(idClase);
+
+                                return DetalleClaseMapper.Map(reader, profesor, clase);
+                            }
+                        }
+                    }
+                }
+
+                return null;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }*/
+
+
     }
 }
