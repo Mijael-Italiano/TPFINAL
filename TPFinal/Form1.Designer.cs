@@ -42,7 +42,18 @@
             button4 = new Button();
             button5 = new Button();
             button6 = new Button();
+            btnMostrarPorProfesor = new Button();
+            comboBox1 = new ComboBox();
+            label1 = new Label();
+            btnVerListaCompleta = new Button();
             button7 = new Button();
+            textBox1 = new TextBox();
+            label2 = new Label();
+            button8 = new Button();
+            comboBox2 = new ComboBox();
+            label3 = new Label();
+            btnMostrarListaCompletaClases = new Button();
+            button10 = new Button();
             ((System.ComponentModel.ISupportInitialize)grillaInscripto).BeginInit();
             ((System.ComponentModel.ISupportInitialize)grillaClase).BeginInit();
             ((System.ComponentModel.ISupportInitialize)grillaProfesor).BeginInit();
@@ -61,20 +72,20 @@
             grillaClase.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             grillaClase.Location = new Point(705, 12);
             grillaClase.Name = "grillaClase";
-            grillaClase.Size = new Size(560, 391);
+            grillaClase.Size = new Size(560, 382);
             grillaClase.TabIndex = 1;
             // 
             // grillaProfesor
             // 
             grillaProfesor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grillaProfesor.Location = new Point(47, 457);
+            grillaProfesor.Location = new Point(359, 457);
             grillaProfesor.Name = "grillaProfesor";
-            grillaProfesor.Size = new Size(648, 208);
+            grillaProfesor.Size = new Size(693, 208);
             grillaProfesor.TabIndex = 3;
             // 
             // btnDetalleClase
             // 
-            btnDetalleClase.Location = new Point(705, 409);
+            btnDetalleClase.Location = new Point(705, 402);
             btnDetalleClase.Name = "btnDetalleClase";
             btnDetalleClase.Size = new Size(122, 38);
             btnDetalleClase.TabIndex = 4;
@@ -84,7 +95,7 @@
             // 
             // btnAgregarInscripto
             // 
-            btnAgregarInscripto.Location = new Point(47, 400);
+            btnAgregarInscripto.Location = new Point(47, 401);
             btnAgregarInscripto.Name = "btnAgregarInscripto";
             btnAgregarInscripto.Size = new Size(121, 40);
             btnAgregarInscripto.TabIndex = 5;
@@ -94,16 +105,17 @@
             // 
             // btnModificarInscripto
             // 
-            btnModificarInscripto.Location = new Point(197, 399);
+            btnModificarInscripto.Location = new Point(197, 403);
             btnModificarInscripto.Name = "btnModificarInscripto";
             btnModificarInscripto.Size = new Size(123, 38);
             btnModificarInscripto.TabIndex = 6;
             btnModificarInscripto.Text = "Modificar Inscripto";
             btnModificarInscripto.UseVisualStyleBackColor = true;
+            btnModificarInscripto.Click += btnModificarInscripto_Click;
             // 
             // btnEliminarInscripto
             // 
-            btnEliminarInscripto.Location = new Point(349, 400);
+            btnEliminarInscripto.Location = new Point(349, 403);
             btnEliminarInscripto.Name = "btnEliminarInscripto";
             btnEliminarInscripto.Size = new Size(123, 37);
             btnEliminarInscripto.TabIndex = 7;
@@ -113,7 +125,7 @@
             // 
             // BtnAsignarClase
             // 
-            BtnAsignarClase.Location = new Point(493, 399);
+            BtnAsignarClase.Location = new Point(493, 403);
             BtnAsignarClase.Name = "BtnAsignarClase";
             BtnAsignarClase.Size = new Size(123, 37);
             BtnAsignarClase.TabIndex = 8;
@@ -123,7 +135,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(854, 409);
+            button1.Location = new Point(851, 401);
             button1.Name = "button1";
             button1.Size = new Size(126, 38);
             button1.TabIndex = 9;
@@ -133,7 +145,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(997, 409);
+            button2.Location = new Point(1135, 404);
             button2.Name = "button2";
             button2.Size = new Size(119, 38);
             button2.TabIndex = 10;
@@ -143,16 +155,17 @@
             // 
             // button3
             // 
-            button3.Location = new Point(1146, 408);
+            button3.Location = new Point(1002, 403);
             button3.Name = "button3";
             button3.Size = new Size(107, 39);
             button3.TabIndex = 11;
             button3.Text = "Modificar clase";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
-            button4.Location = new Point(292, 671);
+            button4.Location = new Point(687, 671);
             button4.Name = "button4";
             button4.Size = new Size(112, 36);
             button4.TabIndex = 12;
@@ -162,16 +175,17 @@
             // 
             // button5
             // 
-            button5.Location = new Point(421, 671);
+            button5.Location = new Point(820, 670);
             button5.Name = "button5";
             button5.Size = new Size(127, 37);
             button5.TabIndex = 13;
             button5.Text = "Modificar profesor";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // button6
             // 
-            button6.Location = new Point(574, 671);
+            button6.Location = new Point(964, 671);
             button6.Name = "button6";
             button6.Size = new Size(121, 36);
             button6.TabIndex = 14;
@@ -179,21 +193,127 @@
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
             // 
+            // btnMostrarPorProfesor
+            // 
+            btnMostrarPorProfesor.Location = new Point(419, 673);
+            btnMostrarPorProfesor.Name = "btnMostrarPorProfesor";
+            btnMostrarPorProfesor.Size = new Size(116, 36);
+            btnMostrarPorProfesor.TabIndex = 15;
+            btnMostrarPorProfesor.Text = "Mostrar";
+            btnMostrarPorProfesor.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(277, 679);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 16;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(162, 677);
+            label1.Name = "label1";
+            label1.Size = new Size(109, 30);
+            label1.TabIndex = 17;
+            label1.Text = "Mostrar profesores \r\npor actividad";
+            // 
+            // btnVerListaCompleta
+            // 
+            btnVerListaCompleta.Location = new Point(554, 673);
+            btnVerListaCompleta.Name = "btnVerListaCompleta";
+            btnVerListaCompleta.Size = new Size(113, 36);
+            btnVerListaCompleta.TabIndex = 18;
+            btnVerListaCompleta.Text = "Ver lista completa";
+            btnVerListaCompleta.UseVisualStyleBackColor = true;
+            // 
             // button7
             // 
-            button7.Location = new Point(1164, 589);
+            button7.Location = new Point(93, 518);
             button7.Name = "button7";
-            button7.Size = new Size(75, 23);
-            button7.TabIndex = 15;
-            button7.Text = "button7";
+            button7.Size = new Size(101, 47);
+            button7.TabIndex = 19;
+            button7.Text = "Mostrar por ID";
             button7.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(171, 472);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 23);
+            textBox1.TabIndex = 20;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(61, 465);
+            label2.Name = "label2";
+            label2.Size = new Size(94, 30);
+            label2.TabIndex = 21;
+            label2.Text = "Ingrese el valor\r\ndel ID de la clase";
+            // 
+            // button8
+            // 
+            button8.Location = new Point(222, 519);
+            button8.Name = "button8";
+            button8.Size = new Size(109, 46);
+            button8.TabIndex = 22;
+            button8.Text = "Ver lista de inscriptos \r\ncompleta";
+            button8.UseVisualStyleBackColor = true;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(1116, 504);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(104, 23);
+            comboBox2.TabIndex = 23;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(1123, 465);
+            label3.Name = "label3";
+            label3.Size = new Size(82, 30);
+            label3.TabIndex = 24;
+            label3.Text = "Mostrar clases\r\npor disciplina";
+            // 
+            // btnMostrarListaCompletaClases
+            // 
+            btnMostrarListaCompletaClases.Location = new Point(1190, 542);
+            btnMostrarListaCompletaClases.Name = "btnMostrarListaCompletaClases";
+            btnMostrarListaCompletaClases.Size = new Size(75, 55);
+            btnMostrarListaCompletaClases.TabIndex = 25;
+            btnMostrarListaCompletaClases.Text = "Mostrar lista \r\ncompleta";
+            btnMostrarListaCompletaClases.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            button10.Location = new Point(1088, 542);
+            button10.Name = "button10";
+            button10.Size = new Size(84, 55);
+            button10.TabIndex = 26;
+            button10.Text = "Mostrar por \r\ndisciplina";
+            button10.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1277, 718);
+            Controls.Add(button10);
+            Controls.Add(btnMostrarListaCompletaClases);
+            Controls.Add(label3);
+            Controls.Add(comboBox2);
+            Controls.Add(button8);
+            Controls.Add(label2);
+            Controls.Add(textBox1);
             Controls.Add(button7);
+            Controls.Add(btnVerListaCompleta);
+            Controls.Add(label1);
+            Controls.Add(comboBox1);
+            Controls.Add(btnMostrarPorProfesor);
             Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(button4);
@@ -214,6 +334,7 @@
             ((System.ComponentModel.ISupportInitialize)grillaClase).EndInit();
             ((System.ComponentModel.ISupportInitialize)grillaProfesor).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -232,6 +353,17 @@
         private Button button4;
         private Button button5;
         private Button button6;
+        private Button btnMostrarPorProfesor;
+        private ComboBox comboBox1;
+        private Label label1;
+        private Button btnVerListaCompleta;
         private Button button7;
+        private TextBox textBox1;
+        private Label label2;
+        private Button button8;
+        private ComboBox comboBox2;
+        private Label label3;
+        private Button btnMostrarListaCompletaClases;
+        private Button button10;
     }
 }
