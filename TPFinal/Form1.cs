@@ -100,6 +100,15 @@ namespace TPFinal
 
         private void btnDetalleClase_Click(object sender, EventArgs e)
         {
+            if (grillaClase.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar una clase de la grilla.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int idClaseSeleccionada = Convert.ToInt32(grillaClase.SelectedRows[0].Cells["ID_Clase"].Value);
+            ClaseSeleccionada.Clase = claseBusiness.GetById(idClaseSeleccionada);
+
             using (FormDetalleClase detalle = new FormDetalleClase())
             {
                 detalle.ShowDialog();
@@ -148,7 +157,7 @@ namespace TPFinal
             FormAgregarProfesor formAgregarProfesor = new FormAgregarProfesor();
             if (formAgregarProfesor.ShowDialog() == DialogResult.OK)
             {
-                LlenarGrillaProfesor(); // asumimos que ya tenés este método
+                LlenarGrillaProfesor(); 
             }
         }
     }

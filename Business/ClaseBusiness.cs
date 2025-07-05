@@ -24,6 +24,19 @@ namespace Business
                 throw new Exception("Error al obtener clases", ex);
             }
         }
+
+        public Clase GetById(int id)
+        {
+            try
+            {
+                return claseData.GetClaseById(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la clase por ID", ex);
+            }
+        }
+
         public void DisminuirCantidadInscriptos(int idClase)
         {
             claseData.DecrementarCantidadInscriptos(idClase);

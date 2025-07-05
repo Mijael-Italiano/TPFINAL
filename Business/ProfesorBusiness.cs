@@ -26,6 +26,17 @@ namespace Business
             }
         }
 
+        public List<Profesor> GetPorDisciplina(int idDisciplina)
+        {
+            try
+            {
+                return profesorData.ObtenerProfesoresPorDisciplina(idDisciplina);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener profesores por disciplina", ex);
+            }
+        }
 
         public void AgregarProfesor(Profesor profesor)
         {

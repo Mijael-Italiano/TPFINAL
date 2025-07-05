@@ -100,5 +100,37 @@ namespace Data
                 throw;
             }
         }
+
+        public List<Profesor> ObtenerProfesoresPorDisciplina(int idDisciplina)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Profesores WHERE Id_Disciplina = @IdDisciplina";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@IdDisciplina", idDisciplina);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            List<Profesor> lista = new List<Profesor>();
+                            while (reader.Read())
+                            {
+                                int idDisc = Convert.ToInt32(reader["Id_Disciplina"]);
+                                Disciplina disciplina = disciplinaData.GetDisciplinaById(idDisc);
+                                lista.Add(ProfesorMapper.Map(reader, disciplina));
+                            }
+                            return lista;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
