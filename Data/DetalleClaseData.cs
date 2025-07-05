@@ -176,6 +176,23 @@ namespace Data
             }
         }
 
+
+        public void EliminarPorClase(int idClase)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+            {
+                string query = "DELETE FROM Detalle_Clase WHERE Id_Clase = @IdClase";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdClase", idClase);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
         public void QuitarReferenciaProfesor(int idProfesor)
         {
             try

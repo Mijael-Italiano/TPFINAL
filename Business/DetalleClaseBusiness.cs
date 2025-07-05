@@ -36,6 +36,19 @@ namespace Business
             }
         }
 
+        public void EliminarPorClase(int idClase)
+        {
+            try
+            {
+                detalleClaseData.EliminarPorClase(idClase);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar los detalles de la clase.", ex);
+            }
+        }
+
+
         public void QuitarReferenciaProfesor(int idProfesor)
         {
             try

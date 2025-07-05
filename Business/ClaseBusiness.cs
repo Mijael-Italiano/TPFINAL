@@ -12,7 +12,8 @@ namespace Business
     public class ClaseBusiness
     {
         ClaseData claseData = new ClaseData();
-  //      InscriptoBusiness inscriptoBusiness = new InscriptoBusiness();
+        DetalleClaseBusiness detalleClaseBusiness = new DetalleClaseBusiness();
+        //      InscriptoBusiness inscriptoBusiness = new InscriptoBusiness();
 
         public List<Clase> GetLista()
         {
@@ -93,7 +94,7 @@ namespace Business
             {
                 using (TransactionScope trx = new TransactionScope())
                 {
-   //                 inscriptoBusiness.QuitarReferenciaClase(idClase);
+                    detalleClaseBusiness.EliminarPorClase(idClase);
                     trx.Complete();
                 }
             }
