@@ -86,7 +86,7 @@ namespace Data
         {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
             {
-                string query = "UPDATE Inscripto SET IdClase = NULL WHERE IdClase = @IdClase";
+                string query = "UPDATE Inscriptos SET Id_Clase = NULL WHERE Id_Clase = @IdClase";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {

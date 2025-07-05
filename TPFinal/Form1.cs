@@ -213,8 +213,10 @@ namespace TPFinal
                 }
 
                 int idClase = Convert.ToInt32(grillaClase.SelectedRows[0].Cells["ID_Clase"].Value);
+                inscriptoBusiness.QuitarReferenciaClase(idClase);
                 claseBusiness.DeleteById(idClase);
                 LlenarGrillaClase();
+                LlenarGrillaInscripto();
                 MessageBox.Show("Clase eliminada correctamente.");
             }
             catch (Exception ex)

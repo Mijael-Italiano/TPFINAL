@@ -93,7 +93,7 @@ namespace Business
             {
                 using (TransactionScope trx = new TransactionScope())
                 {
- //                   inscriptoBusiness.QuitarReferenciaClase(idClase);
+   //                 inscriptoBusiness.QuitarReferenciaClase(idClase);
                     trx.Complete();
                 }
             }
