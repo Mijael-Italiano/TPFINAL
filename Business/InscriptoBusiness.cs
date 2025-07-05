@@ -99,7 +99,17 @@ namespace Business
                 throw new Exception("Error al eliminar el inscripto.", ex);
             }
         }
-
+        public void QuitarReferenciaClase(int idClase)
+        {
+            try
+            {
+                inscriptoData.QuitarReferenciaClase(idClase);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al quitar la referencia de la clase en los inscriptos.", ex);
+            }
+        }
 
     }
 }

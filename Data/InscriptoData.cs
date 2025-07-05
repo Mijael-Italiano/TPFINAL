@@ -82,6 +82,21 @@ namespace Data
             }
         }
 
+        public void QuitarReferenciaClase(int idClase)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+            {
+                string query = "UPDATE Inscripto SET IdClase = NULL WHERE IdClase = @IdClase";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdClase", idClase);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         public void AddInscripto(Inscripto inscripto)
         {
             try

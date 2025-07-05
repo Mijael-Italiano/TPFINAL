@@ -12,6 +12,7 @@ namespace Business
     public class ClaseBusiness
     {
         ClaseData claseData = new ClaseData();
+  //      InscriptoBusiness inscriptoBusiness = new InscriptoBusiness();
 
         public List<Clase> GetLista()
         {
@@ -85,6 +86,24 @@ namespace Business
                 throw new Exception("Debe seleccionar una disciplina.");
             }
         }
+
+        public void DeleteById(int idClase)
+        {
+            try
+            {
+                using (TransactionScope trx = new TransactionScope())
+                {
+ //                   inscriptoBusiness.QuitarReferenciaClase(idClase);
+                    trx.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar la clase: " + ex.Message, ex);
+            }
+        }
+
+
 
         public void AumentarCantidadInscriptos(int idClase)
         {
