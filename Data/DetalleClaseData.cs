@@ -153,10 +153,14 @@ namespace Data
                             List<DetalleClase> lista = new List<DetalleClase>();
                             while (reader.Read())
                             {
-                                int idProfesor = Convert.ToInt32(reader["ID_Profesor"]);
+                                int? idProfesor = reader["ID_Profesor"] != DBNull.Value
+                                    ? Convert.ToInt32(reader["ID_Profesor"])
+                                    : (int?)null;
                                 int idClaseFromDb = Convert.ToInt32(reader["ID_Clase"]);
 
-                                Profesor profesor = profesorData.GetProfesorById(idProfesor);
+                                Profesor profesor = idProfesor.HasValue
+                                    ? profesorData.GetProfesorById(idProfesor.Value)
+                                    : null;
                                 Clase clase = claseData.GetClaseById(idClaseFromDb);
 
                                 lista.Add(DetalleClaseMapper.Map(reader, profesor, clase));
@@ -172,42 +176,63 @@ namespace Data
             }
         }
 
-
-    /*    public DetalleClase GetById(int id)
+        public void QuitarReferenciaProfesor(int idProfesor)
         {
             try
             {
                 using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
                 {
                     connection.Open();
-                    string query = "SELECT * FROM Detalle_Clase WHERE ID_Detalle_Clases = @id";
+                    string query = "UPDATE Detalle_Clase SET ID_Profesor = NULL WHERE ID_Profesor = @idProfesor";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@idProfesor", idProfesor);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al quitar referencia del profesor en Detalle_Clase", ex);
+            }
+        }
 
-                        using (SqlDataReader reader = command.ExecuteReader())
+
+        /*    public DetalleClase GetById(int id)
+            {
+                try
+                {
+                    using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+                    {
+                        connection.Open();
+                        string query = "SELECT * FROM Detalle_Clase WHERE ID_Detalle_Clases = @id";
+                        using (SqlCommand command = new SqlCommand(query, connection))
                         {
-                            if (reader.Read())
+                            command.Parameters.AddWithValue("@id", id);
+
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                int idProfesor = Convert.ToInt32(reader["ID_Profesor"]);
-                                int idClase = Convert.ToInt32(reader["ID_Clase"]);
+                                if (reader.Read())
+                                {
+                                    int idProfesor = Convert.ToInt32(reader["ID_Profesor"]);
+                                    int idClase = Convert.ToInt32(reader["ID_Clase"]);
 
-                                Profesor profesor = profesorData.GetProfesorById(idProfesor);
-                                Clase clase = claseData.GetClaseById(idClase);
+                                    Profesor profesor = profesorData.GetProfesorById(idProfesor);
+                                    Clase clase = claseData.GetClaseById(idClase);
 
-                                return DetalleClaseMapper.Map(reader, profesor, clase);
+                                    return DetalleClaseMapper.Map(reader, profesor, clase);
+                                }
                             }
                         }
                     }
-                }
 
-                return null;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }*/
+                    return null;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }*/
 
 
     }

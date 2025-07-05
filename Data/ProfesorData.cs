@@ -101,6 +101,30 @@ namespace Data
             }
         }
 
+
+
+        public void DeleteById(int idProfesor)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+                {
+                    connection.Open();
+                    string query = "DELETE FROM Profesores WHERE ID_Profesor = @id";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", idProfesor);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar el profesor", ex);
+            }
+        }
+
+
         public List<Profesor> ObtenerProfesoresPorDisciplina(int idDisciplina)
         {
             try

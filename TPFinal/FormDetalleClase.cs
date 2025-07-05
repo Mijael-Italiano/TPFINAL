@@ -42,8 +42,16 @@ namespace TPFinal
                     DataRow fila = tabla.NewRow();
                     fila["ID_Detalle_Clases"] = detalle.Id_Detalle_Clases; 
                     fila["ID_Clase"] = detalle.clase.Id_Clase;
-                    fila["Nombre_Profesor"] = detalle.profesor.Nombre;
-                    fila["Apellido_Profesor"] = detalle.profesor.Apellido;
+                    if (detalle.profesor != null)
+                    {
+                        fila["Nombre_Profesor"] = detalle.profesor.Nombre;
+                        fila["Apellido_Profesor"] = detalle.profesor.Apellido;
+                    }
+                    else
+                    {
+                        fila["Nombre_Profesor"] = "SIN PROFESOR";
+                        fila["Apellido_Profesor"] = "-";
+                    }
                     fila["Dia"] = detalle.Dia;
                     fila["Horario_Inicio"] = detalle.Horario_Inicio.ToString(@"hh\:mm");
                     fila["Horario_Fin"] = detalle.Horario_Fin.ToString(@"hh\:mm");

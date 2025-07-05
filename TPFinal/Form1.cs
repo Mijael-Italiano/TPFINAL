@@ -183,23 +183,23 @@ namespace TPFinal
 
         private void button6_Click(object sender, EventArgs e)
         {
-           try
-           {
-               if (grillaClase.SelectedRows.Count == 0)
-               {
-                   MessageBox.Show("Debe seleccionar una clase para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                   return;
-               }
+            try
+            {
+                if (grillaProfesor.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Debe seleccionar un profesor para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
-               int idClase = Convert.ToInt32(grillaClase.SelectedRows[0].Cells["ID_Clase"].Value);
-               claseBusiness.DeleteById(idClase);
-               LlenarGrillaClase();
-               MessageBox.Show("Clase eliminada correctamente.");
-           }
-           catch (Exception ex)
-           {
-               MessageBox.Show("Error al eliminar la clase: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-           }
+                int idProfesor = Convert.ToInt32(grillaProfesor.SelectedRows[0].Cells["ID_Profesor"].Value);
+                profesorBusiness.DeleteById(idProfesor);
+                LlenarGrillaProfesor(); 
+                MessageBox.Show("Profesor eliminado correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar profesor: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -36,6 +36,19 @@ namespace Business
             }
         }
 
+        public void QuitarReferenciaProfesor(int idProfesor)
+        {
+            try
+            {
+                detalleClaseData.QuitarReferenciaProfesor(idProfesor);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al quitar referencia del profesor", ex);
+            }
+        }
+
+
         private void ValidarDetalleClase(DetalleClase detalle, List<DetalleClase> turnosExistentes)
         {
             if (string.IsNullOrWhiteSpace(detalle.Dia))

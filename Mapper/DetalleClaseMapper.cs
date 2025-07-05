@@ -10,7 +10,7 @@ namespace Mapper
 {
     public static class DetalleClaseMapper
     {
-        public static DetalleClase Map(SqlDataReader reader, Profesor profesor, Clase clase)
+        public static DetalleClase Map(SqlDataReader reader, Profesor? profesor, Clase clase)
         {
             return new DetalleClase
             {

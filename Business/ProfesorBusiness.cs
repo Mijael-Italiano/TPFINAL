@@ -13,6 +13,7 @@ namespace Business
     public class ProfesorBusiness
     {
         ProfesorData profesorData = new ProfesorData();
+        DetalleClaseBusiness detalleClaseBusiness = new DetalleClaseBusiness();
 
         public List<Profesor> GetLista()
         {
@@ -37,6 +38,28 @@ namespace Business
                 throw new Exception("Error al obtener profesores por disciplina", ex);
             }
         }
+
+
+
+        public void DeleteById(int idProfesor)
+        {
+            try
+            {
+                using (TransactionScope trx = new TransactionScope())
+                {
+                    detalleClaseBusiness.QuitarReferenciaProfesor(idProfesor); //
+                    profesorData.DeleteById(idProfesor);
+                    trx.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar el profesor", ex);
+            }
+        }
+
+
+
 
         public void AgregarProfesor(Profesor profesor)
         {
