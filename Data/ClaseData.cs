@@ -76,7 +76,20 @@ namespace Data
                 throw;
             }
         }
+        public void DeleteById(int idClase)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+            {
+                string query = "DELETE FROM Clases WHERE Id_Clase = @IdClase";
 
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdClase", idClase);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
         public void IncrementarCantidadInscriptos(int idClase)
         {

@@ -95,6 +95,7 @@ namespace Business
                 using (TransactionScope trx = new TransactionScope())
                 {
                     detalleClaseBusiness.EliminarPorClase(idClase);
+                    claseData.DeleteById(idClase);
                     trx.Complete();
                 }
             }
