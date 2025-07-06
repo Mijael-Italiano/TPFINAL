@@ -201,6 +201,7 @@
             btnMostrarPorProfesor.TabIndex = 15;
             btnMostrarPorProfesor.Text = "Mostrar";
             btnMostrarPorProfesor.UseVisualStyleBackColor = true;
+            btnMostrarPorProfesor.Click += btnMostrarPorProfesor_Click;
             // 
             // cmbDisciplinaProfesor
             // 
@@ -227,6 +228,7 @@
             btnVerListaCompleta.TabIndex = 18;
             btnVerListaCompleta.Text = "Ver lista completa";
             btnVerListaCompleta.UseVisualStyleBackColor = true;
+            btnVerListaCompleta.Click += btnVerListaCompleta_Click;
             // 
             // button7
             // 
@@ -287,6 +289,7 @@
             btnMostrarListaCompletaClases.TabIndex = 25;
             btnMostrarListaCompletaClases.Text = "Mostrar lista \r\ncompleta";
             btnMostrarListaCompletaClases.UseVisualStyleBackColor = true;
+            btnMostrarListaCompletaClases.Click += btnMostrarListaCompletaClases_Click;
             // 
             // button10
             // 

@@ -21,9 +21,8 @@ namespace TPFinal
             CargarComboDisciplinaProfesor();
         }
 
-        private void LlenarGrillaClase()
+        private void LlenarGrillaClase(List<Clase> clases)
         {
-            List<Clase> clases = claseBusiness.GetLista();
 
             DataTable tabla = new DataTable();
             tabla.Columns.Add("ID_Clase", typeof(int));
@@ -47,9 +46,15 @@ namespace TPFinal
             grillaClase.DataSource = tabla;
         }
 
-        private void LlenarGrillaProfesor()
+        //Aprovechando el polimorfismo
+        private void LlenarGrillaClase()
         {
-            List<Profesor> profesores = profesorBusiness.GetLista();
+            List<Clase> clases = claseBusiness.GetLista();
+            LlenarGrillaClase(clases);
+        }
+
+        private void LlenarGrillaProfesor(List<Profesor> profesores)
+        {
 
             DataTable tabla = new DataTable();
             tabla.Columns.Add("ID_Profesor", typeof(int));
@@ -73,6 +78,12 @@ namespace TPFinal
 
             grillaProfesor.DataSource = null;
             grillaProfesor.DataSource = tabla;
+        }
+
+        private void LlenarGrillaProfesor()
+        {
+            List<Profesor> profesores = profesorBusiness.GetLista();
+            LlenarGrillaProfesor(profesores);
         }
 
         private void LlenarGrillaInscripto()
@@ -313,7 +324,32 @@ namespace TPFinal
             int idDisciplina = seleccionada.Id_Disciplina;
             List<Clase> clasesFiltradas = claseBusiness.ObtenerClasesPorDisciplina(idDisciplina);
             grillaClase.DataSource = null;
-            grillaClase.DataSource = clasesFiltradas;
+            LlenarGrillaClase(clasesFiltradas);
+        }
+
+        private void btnMostrarListaCompletaClases_Click(object sender, EventArgs e)
+        {
+            LlenarGrillaClase();
+        }
+
+        private void btnMostrarPorProfesor_Click(object sender, EventArgs e)
+        {
+            if (cmbDisciplinaProfesor.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar una disciplina.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Disciplina seleccionada = (Disciplina)cmbDisciplinaProfesor.SelectedItem;
+            int idDisciplina = seleccionada.Id_Disciplina;
+
+            List<Profesor> profesoresFiltrados = profesorBusiness.GetPorDisciplina(idDisciplina);
+            LlenarGrillaProfesor(profesoresFiltrados);
+        }
+
+        private void btnVerListaCompleta_Click(object sender, EventArgs e)
+        {
+            LlenarGrillaProfesor();
         }
     }
 }
