@@ -123,7 +123,17 @@ namespace Business
             }
         }
 
-
+        public List<Clase> ObtenerClasesPorDisciplina(int idDisciplina)
+        {
+            try
+            {
+                return claseData.ObtenerClasesPorDisciplina(idDisciplina);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener las clases por disciplina.", ex);
+            }
+        }
 
         public void AumentarCantidadInscriptos(int idClase)
         {

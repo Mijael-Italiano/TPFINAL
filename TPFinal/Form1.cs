@@ -10,12 +10,15 @@ namespace TPFinal
         DetalleClaseBusiness detalleClaseBusiness = new DetalleClaseBusiness();
         InscriptoBusiness inscriptoBusiness = new InscriptoBusiness();
         ProfesorBusiness profesorBusiness = new ProfesorBusiness();
+        DisciplinaBusiness disciplinaBusiness = new DisciplinaBusiness();
         public Form1()
         {
             InitializeComponent();
             LlenarGrillaClase();
             LlenarGrillaInscripto();
             LlenarGrillaProfesor();
+            CargarComboDisciplinaClase();
+            CargarComboDisciplinaProfesor();
         }
 
         private void LlenarGrillaClase()
@@ -225,6 +228,26 @@ namespace TPFinal
             }
         }
 
+
+        private void CargarComboDisciplinaClase()
+        {
+            List<Disciplina> disciplinas = disciplinaBusiness.ObtenerDisciplinas();
+
+            cmbDisciplinaClase.DataSource = new List<Disciplina>(disciplinas);
+            cmbDisciplinaClase.DisplayMember = "Nombre_Disciplina";
+            cmbDisciplinaClase.ValueMember = "Id_Disciplina";
+        }
+
+        private void CargarComboDisciplinaProfesor()
+        {
+            List<Disciplina> disciplinas = disciplinaBusiness.ObtenerDisciplinas();
+
+            cmbDisciplinaProfesor.DataSource = new List<Disciplina>(disciplinas);
+            cmbDisciplinaProfesor.DisplayMember = "Nombre_Disciplina";
+            cmbDisciplinaProfesor.ValueMember = "Id_Disciplina";
+        }
+
+
         private void btnModificarInscripto_Click(object sender, EventArgs e)
         {
             if (grillaInscripto.SelectedRows.Count == 0)
@@ -277,6 +300,20 @@ namespace TPFinal
             {
                 LlenarGrillaProfesor();
             }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (cmbDisciplinaClase.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar una disciplina.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            Disciplina seleccionada = (Disciplina)cmbDisciplinaClase.SelectedItem;
+            int idDisciplina = seleccionada.Id_Disciplina;
+            List<Clase> clasesFiltradas = claseBusiness.ObtenerClasesPorDisciplina(idDisciplina);
+            grillaClase.DataSource = null;
+            grillaClase.DataSource = clasesFiltradas;
         }
     }
 }

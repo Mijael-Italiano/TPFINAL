@@ -149,6 +149,34 @@ namespace Data
             }
         }
 
+        public List<Clase> ObtenerClasesPorDisciplina(int idDisciplina)
+        {
+            List<Clase> clases = new List<Clase>();
+
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+            {
+                string query = "SELECT * FROM Clases WHERE Id_Disciplina = @IdDisciplina";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdDisciplina", idDisciplina);
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = Convert.ToInt32(reader["Id_Disciplina"]);
+                            Disciplina disciplina = new DisciplinaData().GetDisciplinaById(id);
+                            clases.Add(ClaseMapper.Map(reader, disciplina));
+                        }
+                    }
+                }
+            }
+
+            return clases;
+        }
+
         public void DecrementarCantidadInscriptos(int idClase)
         {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))

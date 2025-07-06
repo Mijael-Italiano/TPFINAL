@@ -43,14 +43,14 @@
             button5 = new Button();
             button6 = new Button();
             btnMostrarPorProfesor = new Button();
-            comboBox1 = new ComboBox();
+            cmbDisciplinaProfesor = new ComboBox();
             label1 = new Label();
             btnVerListaCompleta = new Button();
             button7 = new Button();
             textBox1 = new TextBox();
             label2 = new Label();
             button8 = new Button();
-            comboBox2 = new ComboBox();
+            cmbDisciplinaClase = new ComboBox();
             label3 = new Label();
             btnMostrarListaCompletaClases = new Button();
             button10 = new Button();
@@ -202,13 +202,13 @@
             btnMostrarPorProfesor.Text = "Mostrar";
             btnMostrarPorProfesor.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // cmbDisciplinaProfesor
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(277, 679);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 16;
+            cmbDisciplinaProfesor.FormattingEnabled = true;
+            cmbDisciplinaProfesor.Location = new Point(277, 679);
+            cmbDisciplinaProfesor.Name = "cmbDisciplinaProfesor";
+            cmbDisciplinaProfesor.Size = new Size(121, 23);
+            cmbDisciplinaProfesor.TabIndex = 16;
             // 
             // label1
             // 
@@ -262,13 +262,13 @@
             button8.Text = "Ver lista de inscriptos \r\ncompleta";
             button8.UseVisualStyleBackColor = true;
             // 
-            // comboBox2
+            // cmbDisciplinaClase
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(1116, 504);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(104, 23);
-            comboBox2.TabIndex = 23;
+            cmbDisciplinaClase.FormattingEnabled = true;
+            cmbDisciplinaClase.Location = new Point(1116, 504);
+            cmbDisciplinaClase.Name = "cmbDisciplinaClase";
+            cmbDisciplinaClase.Size = new Size(104, 23);
+            cmbDisciplinaClase.TabIndex = 23;
             // 
             // label3
             // 
@@ -296,6 +296,7 @@
             button10.TabIndex = 26;
             button10.Text = "Mostrar por \r\ndisciplina";
             button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click;
             // 
             // Form1
             // 
@@ -305,14 +306,14 @@
             Controls.Add(button10);
             Controls.Add(btnMostrarListaCompletaClases);
             Controls.Add(label3);
-            Controls.Add(comboBox2);
+            Controls.Add(cmbDisciplinaClase);
             Controls.Add(button8);
             Controls.Add(label2);
             Controls.Add(textBox1);
             Controls.Add(button7);
             Controls.Add(btnVerListaCompleta);
             Controls.Add(label1);
-            Controls.Add(comboBox1);
+            Controls.Add(cmbDisciplinaProfesor);
             Controls.Add(btnMostrarPorProfesor);
             Controls.Add(button6);
             Controls.Add(button5);
@@ -354,14 +355,14 @@
         private Button button5;
         private Button button6;
         private Button btnMostrarPorProfesor;
-        private ComboBox comboBox1;
+        private ComboBox cmbDisciplinaProfesor;
         private Label label1;
         private Button btnVerListaCompleta;
         private Button button7;
         private TextBox textBox1;
         private Label label2;
         private Button button8;
-        private ComboBox comboBox2;
+        private ComboBox cmbDisciplinaClase;
         private Label label3;
         private Button btnMostrarListaCompletaClases;
         private Button button10;
