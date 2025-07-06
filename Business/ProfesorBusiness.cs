@@ -40,7 +40,17 @@ namespace Business
         }
 
 
-
+        public Profesor GetProfesorById(int id)
+        {
+            try
+            {
+                return profesorData.GetProfesorById(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el profesor.", ex);
+            }
+        }
         public void DeleteById(int idProfesor)
         {
             try
@@ -107,10 +117,22 @@ namespace Business
 
         }
 
-
-
-
-
+        public void ModificarProfesor(Profesor profesor)
+        {
+            try
+            {
+                using (TransactionScope trx = new TransactionScope())
+                {
+                    ValidarProfesor(profesor);
+                    profesorData.Modificar(profesor);
+                    trx.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al modificar el profesor.", ex);
+            }
+        }
 
     }
 }

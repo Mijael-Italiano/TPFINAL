@@ -227,17 +227,56 @@ namespace TPFinal
 
         private void btnModificarInscripto_Click(object sender, EventArgs e)
         {
+            if (grillaInscripto.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar un inscripto para modificar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
+            int idInscripto = Convert.ToInt32(grillaInscripto.SelectedRows[0].Cells["ID_Inscripto"].Value);
+            InscriptoSeleccionado.Inscripto = inscriptoBusiness.GetInscriptoById(idInscripto);
+
+            FormModificarInscripto formModificarInscripto = new FormModificarInscripto();
+            if (formModificarInscripto.ShowDialog() == DialogResult.OK)
+            {
+                LlenarGrillaInscripto();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (grillaClase.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar una clase para modificar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
+            int idClase = Convert.ToInt32(grillaClase.SelectedRows[0].Cells["ID_Clase"].Value);
+            ClaseSeleccionada.Clase = claseBusiness.GetById(idClase);
+
+            FormModificarClase formModificar = new FormModificarClase();
+            if (formModificar.ShowDialog() == DialogResult.OK)
+            {
+                LlenarGrillaClase();
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
+            if (grillaProfesor.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar un profesor para modificar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
+            int idProfesor = Convert.ToInt32(grillaProfesor.SelectedRows[0].Cells["ID_Profesor"].Value);
+            ProfesorSeleccionado.Profesor = profesorBusiness.GetProfesorById(idProfesor);
+
+            FormModificarProfesor formModificarProfesor = new FormModificarProfesor();
+            if (formModificarProfesor.ShowDialog() == DialogResult.OK)
+            {
+                LlenarGrillaProfesor();
+            }
         }
     }
 }

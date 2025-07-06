@@ -102,7 +102,24 @@ namespace Data
         }
 
 
+        public void Modificar(Profesor profesor)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+            {
+                string query = "UPDATE Profesores SET Nombre = @Nombre, Apellido = @Apellido, DNI = @DNI, Sueldo = @Sueldo WHERE ID_Profesor = @Id";
 
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Nombre", profesor.Nombre);
+                    command.Parameters.AddWithValue("@Apellido", profesor.Apellido);
+                    command.Parameters.AddWithValue("@DNI", profesor.DNI);
+                    command.Parameters.AddWithValue("@Sueldo", profesor.Sueldo);
+                    command.Parameters.AddWithValue("@Id", profesor.ID_Profesor);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
         public void DeleteById(int idProfesor)
         {
             try

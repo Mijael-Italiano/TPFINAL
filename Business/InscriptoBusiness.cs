@@ -25,24 +25,72 @@ namespace Business
             }
         }
 
+        public Inscripto GetInscriptoById(int id)
+        {
+            try
+            {
+                return inscriptoData.GetInscriptoById(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el inscripto por ID.", ex);
+            }
+        }
 
+        public void ModificarInscripto(Inscripto inscripto)
+        {
+            try
+            {
+                using (TransactionScope trx = new TransactionScope())
+                {
+                    ValidarInscripto(inscripto);
+                    inscriptoData.Modificar(inscripto);
+                    trx.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al modificar el inscripto.", ex);
+            }
+        }
+
+
+        private void ValidarInscripto(Inscripto inscripto)
+        {
+            if (string.IsNullOrWhiteSpace(inscripto.Nombre))
+            {
+                throw new Exception("Nombre requerido");
+            }
+
+            if (string.IsNullOrWhiteSpace(inscripto.Apellido))
+            {
+                throw new Exception("Apellido requerido");
+            }
+
+            if (inscripto.DNI <= 0)
+            {
+                throw new Exception("El DNI debe ser un número positivo.");
+            }
+
+            if (inscripto.DNI.ToString().Length <= 6)
+            {
+                throw new Exception("El DNI debe tener más de 5 dígitos.");
+            }
+
+
+        }
 
         public void AddInscripto(Inscripto inscripto)
         {
 
             try
             {
-                if (inscripto.Nombre == null)
+                using (TransactionScope trx = new TransactionScope())
                 {
-                    throw new Exception("Nombre requerido");
+                    ValidarInscripto(inscripto);
+                    inscriptoData.AddInscripto(inscripto);
+                    trx.Complete();
                 }
-
-                if (inscripto.Apellido == null)
-                {
-                    throw new Exception("Apellido requerido");
-                }
-
-                inscriptoData.AddInscripto(inscripto);
             }
             catch (Exception)
             {

@@ -88,6 +88,24 @@ namespace Business
             }
         }
 
+
+        public void ModificarClase(Clase clase)
+        {
+            try
+            {
+                using (TransactionScope trx = new TransactionScope())
+                {
+                    ValidarClase(clase);
+                    claseData.Modificar(clase);
+                    trx.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al modificar la clase.", ex);
+            }
+        }
+
         public void DeleteById(int idClase)
         {
             try

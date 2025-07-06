@@ -106,7 +106,23 @@ namespace Data
             }
         }
 
+        public void Modificar(Clase clase)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+            {
+                string query = "UPDATE Clases SET CuotaMensual = @Cuota, Maximo_Inscriptos = @Maximo WHERE Id_Clase = @IdClase";
 
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Cuota", clase.CuotaMensual);
+                    command.Parameters.AddWithValue("@Maximo", clase.Maximo_Alumnos);
+                    command.Parameters.AddWithValue("@IdClase", clase.Id_Clase);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
         public void AgregarClase(Clase clase)
         {
             try

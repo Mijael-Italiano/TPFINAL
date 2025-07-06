@@ -46,6 +46,25 @@ namespace Data
             }
         }
 
+        public void Modificar(Inscripto inscripto)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+            {
+                string query = "UPDATE Inscriptos SET Nombre = @Nombre, Apellido = @Apellido, DNI = @DNI WHERE Id_Inscripto = @Id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Nombre", inscripto.Nombre);
+                    command.Parameters.AddWithValue("@Apellido", inscripto.Apellido);
+                    command.Parameters.AddWithValue("@DNI", inscripto.DNI);
+                    command.Parameters.AddWithValue("@Id", inscripto.ID_Inscripto);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
 
         public Inscripto GetInscriptoById(int id)
         {
