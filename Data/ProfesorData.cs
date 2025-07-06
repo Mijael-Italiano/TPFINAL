@@ -102,6 +102,8 @@ namespace Data
         }
 
 
+
+
         public void Modificar(Profesor profesor)
         {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))

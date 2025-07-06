@@ -27,6 +27,11 @@ namespace Business
             }
         }
 
+
+
+
+
+
         public List<Profesor> GetPorDisciplina(int idDisciplina)
         {
             try

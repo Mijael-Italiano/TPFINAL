@@ -86,9 +86,9 @@ namespace TPFinal
             LlenarGrillaProfesor(profesores);
         }
 
-        private void LlenarGrillaInscripto()
+        private void LlenarGrillaInscripto(List<Inscripto> inscriptos)
         {
-            List<Inscripto> inscriptos = inscriptoBusiness.GetLista();
+            //        List<Inscripto> inscriptos = inscriptoBusiness.GetLista();
 
             DataTable tabla = new DataTable();
             tabla.Columns.Add("ID_Inscripto", typeof(int));
@@ -110,6 +110,12 @@ namespace TPFinal
 
             grillaInscripto.DataSource = null;
             grillaInscripto.DataSource = tabla;
+        }
+
+        private void LlenarGrillaInscripto()
+        {
+            List<Inscripto> inscriptos = inscriptoBusiness.GetLista();
+            LlenarGrillaInscripto(inscriptos);
         }
 
         private void btnDetalleClase_Click(object sender, EventArgs e)
@@ -350,6 +356,35 @@ namespace TPFinal
         private void btnVerListaCompleta_Click(object sender, EventArgs e)
         {
             LlenarGrillaProfesor();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            int? idClase = null;
+
+            try
+            {
+                string texto = txtIdClaseInscripto.Text;
+
+                if (!string.IsNullOrWhiteSpace(texto))
+                {
+                    idClase = Convert.ToInt32(texto);
+                }
+
+                List<Inscripto> inscriptos = inscriptoBusiness.ObtenerInscriptosPorClase(idClase);
+                LlenarGrillaInscripto(inscriptos);
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ID inválido.");
+                return;
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            LlenarGrillaInscripto();
         }
     }
 }

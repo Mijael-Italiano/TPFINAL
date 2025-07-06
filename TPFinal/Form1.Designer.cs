@@ -47,7 +47,7 @@
             label1 = new Label();
             btnVerListaCompleta = new Button();
             button7 = new Button();
-            textBox1 = new TextBox();
+            txtIdClaseInscripto = new TextBox();
             label2 = new Label();
             button8 = new Button();
             cmbDisciplinaClase = new ComboBox();
@@ -238,13 +238,14 @@
             button7.TabIndex = 19;
             button7.Text = "Mostrar por ID";
             button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
             // 
-            // textBox1
+            // txtIdClaseInscripto
             // 
-            textBox1.Location = new Point(171, 472);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 20;
+            txtIdClaseInscripto.Location = new Point(171, 472);
+            txtIdClaseInscripto.Name = "txtIdClaseInscripto";
+            txtIdClaseInscripto.Size = new Size(100, 23);
+            txtIdClaseInscripto.TabIndex = 20;
             // 
             // label2
             // 
@@ -263,6 +264,7 @@
             button8.TabIndex = 22;
             button8.Text = "Ver lista de inscriptos \r\ncompleta";
             button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
             // 
             // cmbDisciplinaClase
             // 
@@ -312,7 +314,7 @@
             Controls.Add(cmbDisciplinaClase);
             Controls.Add(button8);
             Controls.Add(label2);
-            Controls.Add(textBox1);
+            Controls.Add(txtIdClaseInscripto);
             Controls.Add(button7);
             Controls.Add(btnVerListaCompleta);
             Controls.Add(label1);
@@ -362,7 +364,7 @@
         private Label label1;
         private Button btnVerListaCompleta;
         private Button button7;
-        private TextBox textBox1;
+        private TextBox txtIdClaseInscripto;
         private Label label2;
         private Button button8;
         private ComboBox cmbDisciplinaClase;

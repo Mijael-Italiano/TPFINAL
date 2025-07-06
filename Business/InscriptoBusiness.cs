@@ -76,9 +76,20 @@ namespace Business
             {
                 throw new Exception("El DNI debe tener más de 5 dígitos.");
             }
-
-
         }
+
+        public List<Inscripto> ObtenerInscriptosPorClase(int? idClase)
+        {
+            try
+            {
+                return inscriptoData.ObtenerInscriptosPorClase(idClase);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los inscriptos por clase.", ex);
+            }
+        }
+
 
         public void AddInscripto(Inscripto inscripto)
         {

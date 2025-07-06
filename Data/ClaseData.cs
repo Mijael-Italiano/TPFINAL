@@ -177,6 +177,8 @@ namespace Data
             return clases;
         }
 
+
+
         public void DecrementarCantidadInscriptos(int idClase)
         {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))

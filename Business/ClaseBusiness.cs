@@ -123,6 +123,8 @@ namespace Business
             }
         }
 
+
+
         public List<Clase> ObtenerClasesPorDisciplina(int idDisciplina)
         {
             try

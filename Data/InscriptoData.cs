@@ -66,6 +66,44 @@ namespace Data
         }
 
 
+        public List<Inscripto> ObtenerInscriptosPorClase(int? idClase)
+        {
+            List<Inscripto> lista = new List<Inscripto>();
+
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Gimnasio"].ConnectionString))
+            {
+                string query = idClase == null
+                    ? "SELECT * FROM Inscriptos WHERE ID_Clase IS NULL"
+                    : "SELECT * FROM Inscriptos WHERE ID_Clase = @idClase";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    if (idClase != null)
+                    {
+                        command.Parameters.AddWithValue("@idClase", idClase);
+                    }
+
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Clase clase = null;
+                            if (!(reader["ID_Clase"] is DBNull))
+                            {
+                                int id = Convert.ToInt32(reader["ID_Clase"]);
+                                clase = new ClaseData().GetClaseById(id);
+                            }
+
+                            lista.Add(InscriptoMapper.Map(reader, clase));
+                        }
+                    }
+                }
+            }
+
+            return lista;
+        }
+
         public Inscripto GetInscriptoById(int id)
         {
             try
