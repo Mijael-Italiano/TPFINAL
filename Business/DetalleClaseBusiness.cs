@@ -121,7 +121,17 @@ namespace Business
         }
 
 
-
+        public DetalleClase GetDetalleClaseById(int id)
+        {
+            try
+            {
+                return detalleClaseData.GetById(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el detalle de clase por ID", ex);
+            }
+        }
 
     }
 }

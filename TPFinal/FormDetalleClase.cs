@@ -40,7 +40,7 @@ namespace TPFinal
                 foreach (DetalleClase detalle in detalles)
                 {
                     DataRow fila = tabla.NewRow();
-                    fila["ID_Detalle_Clases"] = detalle.Id_Detalle_Clases; 
+                    fila["ID_Detalle_Clases"] = detalle.Id_Detalle_Clases;
                     fila["ID_Clase"] = detalle.clase.Id_Clase;
                     if (detalle.profesor != null)
                     {
@@ -101,6 +101,24 @@ namespace TPFinal
             catch (Exception ex)
             {
                 MessageBox.Show("Error al eliminar el turno: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (grillaClaseDetalle.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar un turno para modificar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int idDetalle = Convert.ToInt32(grillaClaseDetalle.SelectedRows[0].Cells["ID_Detalle_Clases"].Value);
+            DetalleClaseSeleccionada.DetalleClase = detalleClaseBusiness.GetDetalleClaseById(idDetalle);
+
+            FormModificarDetalleClase formModificar = new FormModificarDetalleClase();
+            if (formModificar.ShowDialog() == DialogResult.OK)
+            {
+                LlenarGrillaDetalleClase();
             }
         }
     }

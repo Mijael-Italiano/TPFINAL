@@ -33,8 +33,8 @@
             label3 = new Label();
             txtHorarioInicioModificar = new TextBox();
             txtHorarioFinModificar = new TextBox();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
+            cmbModificarDia = new ComboBox();
+            cmbProfesorModificar = new ComboBox();
             label4 = new Label();
             button1 = new Button();
             SuspendLayout();
@@ -80,21 +80,21 @@
             txtHorarioFinModificar.Size = new Size(100, 23);
             txtHorarioFinModificar.TabIndex = 4;
             // 
-            // comboBox1
+            // cmbModificarDia
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(73, 191);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 5;
+            cmbModificarDia.FormattingEnabled = true;
+            cmbModificarDia.Location = new Point(73, 191);
+            cmbModificarDia.Name = "cmbModificarDia";
+            cmbModificarDia.Size = new Size(121, 23);
+            cmbModificarDia.TabIndex = 5;
             // 
-            // comboBox2
+            // cmbProfesorModificar
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(73, 252);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(121, 23);
-            comboBox2.TabIndex = 6;
+            cmbProfesorModificar.FormattingEnabled = true;
+            cmbProfesorModificar.Location = new Point(73, 252);
+            cmbProfesorModificar.Name = "cmbProfesorModificar";
+            cmbProfesorModificar.Size = new Size(121, 23);
+            cmbProfesorModificar.TabIndex = 6;
             // 
             // label4
             // 
@@ -122,8 +122,8 @@
             ClientSize = new Size(381, 333);
             Controls.Add(button1);
             Controls.Add(label4);
-            Controls.Add(comboBox2);
-            Controls.Add(comboBox1);
+            Controls.Add(cmbProfesorModificar);
+            Controls.Add(cmbModificarDia);
             Controls.Add(txtHorarioFinModificar);
             Controls.Add(txtHorarioInicioModificar);
             Controls.Add(label3);
@@ -142,8 +142,8 @@
         private Label label3;
         private TextBox txtHorarioInicioModificar;
         private TextBox txtHorarioFinModificar;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
+        private ComboBox cmbModificarDia;
+        private ComboBox cmbProfesorModificar;
         private Label label4;
         private Button button1;
     }

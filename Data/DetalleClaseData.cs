@@ -215,7 +215,7 @@ namespace Data
         }
 
 
-        /*    public DetalleClase GetById(int id)
+            public DetalleClase GetById(int id)
             {
                 try
                 {
@@ -249,8 +249,6 @@ namespace Data
                 {
                     throw;
                 }
-            }*/
-
-
+            }
     }
 }
