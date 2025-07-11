@@ -86,6 +86,11 @@ namespace Business
             {
                 throw new Exception("Debe seleccionar una disciplina.");
             }
+
+            if (clase.Maximo_Alumnos < clase.Cantidad_Inscriptos)
+            {
+                throw new Exception($"El nuevo máximo de alumnos ({clase.Maximo_Alumnos}) no puede ser menor a la cantidad actual de inscriptos ({clase.Cantidad_Inscriptos}).");
+            }
         }
 
 
