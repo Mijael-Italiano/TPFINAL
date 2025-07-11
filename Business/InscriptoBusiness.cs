@@ -13,6 +13,7 @@ namespace Business
     {
         InscriptoData inscriptoData = new InscriptoData();
         ClaseBusiness claseBusiness = new ClaseBusiness();
+        public event EventHandler<ClaseLlenaEventArgs> ClaseLlena;
         public List<Inscripto> GetLista()
         {
             try
@@ -120,12 +121,17 @@ namespace Business
             }
         }
 
-        public void AsignarClaseAInscripto(int idInscripto, int idClase)
+        public void AsignarClaseAInscripto(int idInscripto, int idClase, int maximoInscriptos, int cantidadInscriptos)
         {
             try
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
+                    if (cantidadInscriptos >= maximoInscriptos)
+                    {
+                        ClaseLlena?.Invoke(this, new ClaseLlenaEventArgs(idClase, idInscripto));
+                        return; 
+                    }
                     int? idClaseActual = inscriptoData.GetIdClaseDeInscripto(idInscripto);
 
                     if (idClaseActual.HasValue)
