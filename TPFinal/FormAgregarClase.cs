@@ -36,8 +36,23 @@ namespace TPFinal
             {
                 Clase nuevaClase = new Clase();
                 nuevaClase.Cantidad_Inscriptos = 0;
-                nuevaClase.CuotaMensual = Convert.ToInt32(txtAgregarCuotaMensual.Text);
-                nuevaClase.Maximo_Alumnos = Convert.ToInt32(txtAgregarMaximoInscriptos.Text);
+
+                int cuotaMensual;
+                if (!Int32.TryParse(txtAgregarCuotaMensual.Text, out cuotaMensual))
+                {
+                    MessageBox.Show("La cuota mensual no es válida");
+                    return;
+                }
+
+                int maximoAlumnos;
+                if (!Int32.TryParse(txtAgregarMaximoInscriptos.Text, out maximoAlumnos))
+                {
+                    MessageBox.Show("El maximo de alumnos no es válido");
+                    return;
+                }
+
+                nuevaClase.CuotaMensual = cuotaMensual;
+                nuevaClase.Maximo_Alumnos = maximoAlumnos;
                 nuevaClase.Disciplina = (Disciplina)cmbAgregarClase.SelectedItem;
                 List<Clase> clasesExistentes = claseBusiness.GetLista();
                 claseBusiness.AgregarClase(nuevaClase);

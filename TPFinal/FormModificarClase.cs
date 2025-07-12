@@ -36,14 +36,14 @@ namespace TPFinal
                 int nuevaCuota;
                 if (!Int32.TryParse(txtModificarCuota.Text, out nuevaCuota))
                 {
-                    MessageBox.Show("La cuota ingresada no es válido o es muy larga");
+                    MessageBox.Show("La cuota ingresada no es válido");
                     return;
                 }
 
                 int nuevoMaximo;
                 if (!Int32.TryParse(txtModificarMaximoInscriptos.Text, out nuevoMaximo))
                 {
-                    MessageBox.Show("El maximo de inscripciones no es válido o es muy larga");
+                    MessageBox.Show("El maximo de inscripciones no es válido");
                     return;
                 }
 
