@@ -11,7 +11,7 @@ namespace Entity
         public int ID_Inscripto { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
-        public int? ID_Clase { get; set; } // Nullable porque permite nulos
+        public Clase? clase { get; set; }
         public int DNI { get; set; }
     }
 }
